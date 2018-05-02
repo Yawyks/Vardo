@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".FindRideActivity" />
-        <activity android:name=".OfferRideActivity"></activity>
+        <activity android:name=".OfferRideActivity" />
+        <activity android:name=".OfferSuccessActivity" />
+        <activity android:name=".OfferRideSuccessActivity"></activity>
     </application>
 
 </manifest>
