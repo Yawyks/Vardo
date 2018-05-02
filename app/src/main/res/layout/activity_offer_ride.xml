@@ -15,8 +15,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="From"
+        android:hint="From Location"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingBottom="20dp"
+        android:paddingLeft="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,12 +33,16 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="To"
+        android:hint="To Location"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingBottom="20dp"
+        android:paddingLeft="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editFromLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/editFromLocation" />/>
+
 
     <EditText
         android:id="@+id/editOfferDateTime"
@@ -45,8 +52,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Date / Time"
+        android:hint="Date / Time"
+        android:inputType="datetime"
+        android:paddingBottom="20dp"
+        android:paddingLeft="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +65,42 @@
         android:id="@+id/btnOfferRideNext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="NEXT"
+        android:background="@color/colorPrimaryDark"
+        android:text="OFFER A RIDE"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewFromLocation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_from_location" />
+
+    <ImageView
+        android:id="@+id/imageViewToLocation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFromLocation"
+        app:srcCompat="@drawable/ic_to_location" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewToLocation"
+        app:srcCompat="@drawable/ic_date_time" />
 </android.support.constraint.ConstraintLayout>
