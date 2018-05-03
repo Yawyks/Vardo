@@ -27,7 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Variables Firebase
     private FirebaseAuth myFirebaseAuth;
-    private FirebaseAuth.AuthStateListener myFireBaseAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,60 +36,44 @@ public class RegisterActivity extends AppCompatActivity {
         myEditTextRegisterEmail = findViewById(R.id.editTextRegisterEmail);
         myEditTextRegisterPassword = findViewById(R.id.editTextRegisterPassword);
         myButtonRegister = findViewById(R.id.buttonRegister);
-
-        myFirebaseAuth = FirebaseAuth.getInstance();
-        
-        myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser myFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-                if(myFirebaseUser!=null){
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
-                }
-            }
-        };
         
         myButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String myEmail = myEditTextRegisterEmail.getText().toString();
                 final String myPassword = myEditTextRegisterPassword.getText().toString();
-                
-                myFirebaseAuth.createUserWithEmailAndPassword(myEmail, myPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Sign-up error.", Toast.LENGTH_SHORT).show();
-                        }else{
-                            String myUserId = myFirebaseAuth.getCurrentUser().getUid();
-                            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId);
-                            current_user_db.setValue(true);
-                            Toast.makeText(RegisterActivity.this, "Registered completed successfully", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish();
-                            return;
+
+                if(myEmail.matches("")){
+                    Toast.makeText(RegisterActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
+                }
+
+                else if(myPassword.matches("")){
+                    Toast.makeText(RegisterActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+
+                    myFirebaseAuth.createUserWithEmailAndPassword(myEmail, myPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this, "Sign-up error.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                String myUserId = myFirebaseAuth.getCurrentUser().getUid();
+                                DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId);
+                                current_user_db.setValue(true);
+
+                                Toast.makeText(RegisterActivity.this, "Registered completed successfully", Toast.LENGTH_LONG).show();
+
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        myFirebaseAuth.addAuthStateListener(myFireBaseAuthStateListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        myFirebaseAuth.removeAuthStateListener(myFireBaseAuthStateListener);
     }
 }

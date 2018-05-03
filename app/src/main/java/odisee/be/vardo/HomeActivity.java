@@ -10,6 +10,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private Button btnFindRide;
     private Button btnOfferRide;
+    private Button myButtonLogou;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

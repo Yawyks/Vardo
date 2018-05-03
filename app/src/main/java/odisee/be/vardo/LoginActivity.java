@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         myEditTextLoginPassword = findViewById(R.id.editTextLoginPassword);
         myButtonLogin = findViewById(R.id.buttonLogin);
 
+        myFirebaseAuth = FirebaseAuth.getInstance();
+
         myTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,21 +48,66 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        myFirebaseAuth = FirebaseAuth.getInstance();
+
+        myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser myFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                if(myFirebaseUser!=null){
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+            }
+        };
+
         myButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String myEmail = myEditTextLoginEmail.getText().toString();
                 final String myPassword = myEditTextLoginPassword.getText().toString();
 
-                myFirebaseAuth.signInWithEmailAndPassword(myEmail, myPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Login error.", Toast.LENGTH_SHORT).show();
+                if(myEmail.matches("")){
+                    Toast.makeText(LoginActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
+                }
+
+                else if(myPassword.matches("")){
+                    Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    myFirebaseAuth.signInWithEmailAndPassword(myEmail, myPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Login error.", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        myFirebaseAuth.addAuthStateListener(myFireBaseAuthStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myFirebaseAuth.removeAuthStateListener(myFireBaseAuthStateListener);
     }
 }
