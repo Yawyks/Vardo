@@ -45,10 +45,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), RegisterActivity.class);
                 startActivity(i);
+                finish();
+                return;
             }
         });
-
-        myFirebaseAuth = FirebaseAuth.getInstance();
 
         myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
 

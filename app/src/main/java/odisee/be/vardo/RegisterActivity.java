@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     // Variables Firebase
     private FirebaseAuth myFirebaseAuth;
+    private FirebaseAuth.AuthStateListener myFireBaseAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,23 @@ public class RegisterActivity extends AppCompatActivity {
         myEditTextRegisterEmail = findViewById(R.id.editTextRegisterEmail);
         myEditTextRegisterPassword = findViewById(R.id.editTextRegisterPassword);
         myButtonRegister = findViewById(R.id.buttonRegister);
+
+        myFirebaseAuth = FirebaseAuth.getInstance();
+
+        myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser myFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                if(myFirebaseUser!=null){
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+            }
+        };
         
         myButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,5 +93,17 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        myFirebaseAuth.addAuthStateListener(myFireBaseAuthStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myFirebaseAuth.removeAuthStateListener(myFireBaseAuthStateListener);
     }
 }
