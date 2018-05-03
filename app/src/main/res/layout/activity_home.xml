@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_background"
+    android:background="@drawable/test"
     tools:context=".HomeActivity">
 
     <TextView
@@ -51,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSlogan"
-        app:layout_constraintVertical_bias="0.275" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/buttonOfferRide"
