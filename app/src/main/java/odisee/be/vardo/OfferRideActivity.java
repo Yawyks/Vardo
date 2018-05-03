@@ -29,9 +29,9 @@ public class OfferRideActivity extends AppCompatActivity {
         btnOfferRideNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent btnOfferRideNextClick = new Intent(v.getContext(), OfferRideSuccessActivity.class);
+                Intent i = new Intent(v.getContext(), OfferRideSuccessActivity.class);
 
-                startActivity(btnOfferRideNextClick);
+                startActivity(i);
             }
         });
     }

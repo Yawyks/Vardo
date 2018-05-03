@@ -46,30 +46,26 @@ public class RegisterActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser myFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                if(myFirebaseUser!=null){
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                if (myFirebaseUser != null) {
+                    Intent i = new Intent(RegisterActivity.this, HomeActivity.class);
+                    startActivity(i);
                     finish();
                     return;
                 }
             }
         };
-        
+
         myButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String myEmail = myEditTextRegisterEmail.getText().toString();
                 final String myPassword = myEditTextRegisterPassword.getText().toString();
 
-                if(myEmail.matches("")){
+                if (myEmail.matches("")) {
                     Toast.makeText(RegisterActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
-                }
-
-                else if(myPassword.matches("")){
+                } else if (myPassword.matches("")) {
                     Toast.makeText(RegisterActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
-                }
-
-                else {
+                } else {
 
                     myFirebaseAuth.createUserWithEmailAndPassword(myEmail, myPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -83,8 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Toast.makeText(RegisterActivity.this, "Registered completed successfully", Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(intent);
+                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(i);
                                 finish();
                                 return;
                             }

@@ -56,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser myFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                if(myFirebaseUser!=null){
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                if (myFirebaseUser != null) {
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(i);
                     finish();
                     return;
                 }
@@ -72,23 +72,19 @@ public class LoginActivity extends AppCompatActivity {
                 final String myEmail = myEditTextLoginEmail.getText().toString();
                 final String myPassword = myEditTextLoginPassword.getText().toString();
 
-                if(myEmail.matches("")){
+                if (myEmail.matches("")) {
                     Toast.makeText(LoginActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
-                }
-
-                else if(myPassword.matches("")){
+                } else if (myPassword.matches("")) {
                     Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
-                }
-
-                else{
+                } else {
                     myFirebaseAuth.signInWithEmailAndPassword(myEmail, myPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Login error.", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                startActivity(intent);
+                            } else {
+                                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(i);
                                 finish();
                                 return;
                             }

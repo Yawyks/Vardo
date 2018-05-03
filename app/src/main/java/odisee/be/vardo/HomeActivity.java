@@ -11,8 +11,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
 
     // Variables App
-    private Button btnFindRide;
-    private Button btnOfferRide;
+    private Button myButtonFindRide;
+    private Button myButtonOfferRide;
     private Button myButtonLogout;
 
     @Override
@@ -20,23 +20,23 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btnFindRide = findViewById(R.id.btnFindRide);
-        btnOfferRide = findViewById(R.id.btnOfferRide);
+        myButtonFindRide = findViewById(R.id.buttonFindRide);
+        myButtonOfferRide = findViewById(R.id.buttonOfferRide);
         myButtonLogout = findViewById(R.id.buttonLogout);
 
-        btnFindRide.setOnClickListener(new View.OnClickListener() {
+        myButtonFindRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent btnFindRideClick = new Intent(v.getContext(), FindRideActivity.class);
-                startActivity(btnFindRideClick);
+                Intent i = new Intent(v.getContext(), FindRideActivity.class);
+                startActivity(i);
             }
         });
 
-        btnOfferRide.setOnClickListener(new View.OnClickListener() {
+        myButtonOfferRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent btnOfferRideClick = new Intent(v.getContext(), OfferRideActivity.class);
-                startActivity(btnOfferRideClick);
+                Intent i = new Intent(v.getContext(), OfferRideActivity.class);
+                startActivity(i);
             }
         });
 
@@ -44,11 +44,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                startActivity(intent);
+                Intent i = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(i);
                 finish();
                 return;
-
             }
         });
     }
