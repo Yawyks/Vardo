@@ -10,12 +10,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
-        <activity android:name=".FindRideActivity" />
-        <activity android:name=".OfferRideActivity" />
-        <activity android:name=".OfferRideSuccessActivity" />
+        <activity android:name=".FindRideActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OfferRideActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OfferRideSuccessActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 

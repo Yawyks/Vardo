@@ -6,27 +6,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class OfferRideActivity extends AppCompatActivity {
 
-    private EditText editFromLocation;
-    private EditText editToLocation;
-    private EditText editOfferDateTime;
+    private EditText myEditOfferDateTime;
+    private Spinner mySpinnerFromLocation;
+    private Spinner mySpinnerToLocation;
 
-    Button btnOfferRideNext;
+    private String mySpinnerNamesFromLocation[] = {"Select Location", "Campus Brussel", "Campus Aalst"};
+    private String mySpinnerNamesToLocation[] = {"Select Destination", "Campus Brussel", "Campus Aalst"};
+
+    private Button myButtonOfferRideNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_ride);
 
-        editFromLocation = findViewById(R.id.editFromLocation);
-        editToLocation = findViewById(R.id.editToLocation);
-        editOfferDateTime = findViewById(R.id.editOfferDateTime);
+        //myEditOfferDateTime = findViewById(R.id.editOfferDateTime);
+        mySpinnerFromLocation = findViewById(R.id.spinnerFromLocation);
+        mySpinnerToLocation = findViewById(R.id.spinnerToLocation);
+        myButtonOfferRideNext = findViewById(R.id.buttonOfferRideNext);
 
-        btnOfferRideNext = findViewById(R.id.btnOfferRideNext);
+        mySpinnerFromLocation.setSelection(0);
+        mySpinnerToLocation.setSelection(0);
 
-        btnOfferRideNext.setOnClickListener(new View.OnClickListener() {
+        myButtonOfferRideNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), OfferRideSuccessActivity.class);
