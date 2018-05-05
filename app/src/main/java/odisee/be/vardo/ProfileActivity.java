@@ -163,7 +163,7 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-
+                            Toast.makeText(ProfileActivity.this, "Email updated successfully", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
