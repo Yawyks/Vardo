@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterActivity extends AppCompatActivity {
 
     // Variables App
@@ -28,6 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
     // Variables Firebase
     private FirebaseAuth myFirebaseAuth;
     private FirebaseAuth.AuthStateListener myFireBaseAuthStateListener;
+    private DatabaseReference myUserDatabase;
+
+    private String myUserId;
+    private String myUserRegisterEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         myButtonRegister = findViewById(R.id.buttonRegister);
 
         myFirebaseAuth = FirebaseAuth.getInstance();
+
 
         myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
@@ -74,8 +82,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign-up error", Toast.LENGTH_SHORT).show();
                             } else {
                                 String myUserId = myFirebaseAuth.getCurrentUser().getUid();
+
                                 DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId);
                                 current_user_db.setValue(true);
+
+                                myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId);
+                                updateUserInformation();
 
                                 Toast.makeText(RegisterActivity.this, "Registered completed successfully", Toast.LENGTH_LONG).show();
 
@@ -101,5 +113,19 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         myFirebaseAuth.removeAuthStateListener(myFireBaseAuthStateListener);
+    }
+
+    private void updateUserInformation() {
+
+        myUserRegisterEmail = myEditTextRegisterEmail.getText().toString();
+
+        Map myMapUserInformation = new HashMap();
+
+        myMapUserInformation.put("Email", myUserRegisterEmail);
+
+        myUserDatabase.updateChildren(myMapUserInformation);
+
+        finish();
+
     }
 }
