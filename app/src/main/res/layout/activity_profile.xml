@@ -4,54 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".ProfileActivity">
 
-    <EditText
-        android:id="@+id/editTextProfileFirstName"
+    <RelativeLayout
+        android:id="@+id/relativeLayoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="First Name"
+        android:layout_height="200dp"
+        android:background="@drawable/profile_background">
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageViewProfileAvatar"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/profile_avatar_empty"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextProfileLastName"
-        android:layout_width="match_parent"
+        android:id="@+id/editTextProfileFirstName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Last Name"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@null"
+        android:inputType="textPersonName"
+        android:text="First Name"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProfileFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileAvatar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editTextProfileLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@null"
+        android:inputType="textPersonName"
+        android:text="Last Name"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/editTextProfileFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileAvatar" />
+
+    <EditText
+        android:id="@+id/editTextProfileEmail"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="Email"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProfileEmail"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayoutHeader" />
+
+    <ImageView
+        android:id="@+id/imageViewProfileEmail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayoutHeader"
+        app:srcCompat="@drawable/ic_email" />
 
     <EditText
         android:id="@+id/editTextProfilePhoneNumber"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
+        android:background="@null"
+        android:inputType="phone"
         android:text="Phone Number"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProfileSmartphone"
+        app:layout_constraintTop_toBottomOf="@+id/editTextProfileEmail" />
+
+    <ImageView
+        android:id="@+id/imageViewProfileSmartphone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProfileLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileEmail"
+        app:srcCompat="@drawable/ic_smartphone" />
 
     <Button
         android:id="@+id/buttonProfileUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:background="#024b98"
         android:text="UPDATE"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProfilePhoneNumber"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
 </android.support.constraint.ConstraintLayout>

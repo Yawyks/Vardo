@@ -21,6 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     // Variables App
     private EditText myEditTextProfileFirstName;
     private EditText myEditTextProfileLastName;
+    private EditText myEditTextProfileEmail;
     private EditText myEditTextProfilePhoneNumber;
 
     private Button myButtonProfileUpdate;
@@ -32,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String myUserId;
     private String myUserProfileFirstName;
     private String myUserProfileLastName;
+    private String myUserProfileEmail;
     private String myUserProfilePhoneNumber;
 
     @Override
@@ -42,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Edit Text
         myEditTextProfileFirstName = findViewById(R.id.editTextProfileFirstName);
         myEditTextProfileLastName = findViewById(R.id.editTextProfileLastName);
+        myEditTextProfileEmail = findViewById(R.id.editTextProfileEmail);
         myEditTextProfilePhoneNumber = findViewById(R.id.editTextProfilePhoneNumber);
 
         // Buttons
@@ -71,9 +74,14 @@ public class ProfileActivity extends AppCompatActivity {
                         myUserProfileFirstName = myMap.get("First Name").toString();
                         myEditTextProfileFirstName.setText(myUserProfileFirstName);
                     }
+
                     if (myMap.get("Last Name") != null) {
                         myUserProfileLastName = myMap.get("Last Name").toString();
                         myEditTextProfileLastName.setText(myUserProfileLastName);
+                    }
+                    if (myMap.get("Email") != null) {
+                        myUserProfileEmail = myMap.get("Email").toString();
+                        myEditTextProfileEmail.setText(myUserProfileEmail);
                     }
                     if (myMap.get("Phone Number") != null) {
                         myUserProfilePhoneNumber = myMap.get("Phone Number").toString();
@@ -93,12 +101,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         myUserProfileFirstName = myEditTextProfileFirstName.getText().toString();
         myUserProfileLastName = myEditTextProfileLastName.getText().toString();
+        myUserProfileEmail = myEditTextProfileEmail.getText().toString();
         myUserProfilePhoneNumber = myEditTextProfilePhoneNumber.getText().toString();
 
         Map myMapUserInformation = new HashMap();
 
         myMapUserInformation.put("First Name", myUserProfileFirstName);
         myMapUserInformation.put("Last Name", myUserProfileLastName);
+        myMapUserInformation.put("Email", myUserProfileEmail);
         myMapUserInformation.put("Phone Number", myUserProfilePhoneNumber);
         myUserDatabase.updateChildren(myMapUserInformation);
 
