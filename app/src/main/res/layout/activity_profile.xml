@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="210dp"
         android:background="@drawable/profile_background">
 
     </RelativeLayout>
@@ -23,7 +23,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/profile_avatar_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -34,45 +34,47 @@
         android:id="@+id/editTextProfileFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@null"
+        android:hint="First Name"
         android:inputType="textPersonName"
-        android:text="First Name"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileAvatar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileAvatar" />
 
     <EditText
         android:id="@+id/editTextProfileLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
         android:background="@null"
+        android:hint="Last Name"
         android:inputType="textPersonName"
-        android:text="Last Name"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/editTextProfileFirstName"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileAvatar" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextProfileFirstName" />
 
     <EditText
         android:id="@+id/editTextProfileEmail"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="44dp"
         android:background="@null"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:text="Email"
+        android:textColorHint="#000000"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewProfileEmail"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayoutHeader" />
 
@@ -91,10 +93,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="28dp"
         android:background="@null"
+        android:hint="Phone Number"
         android:inputType="phone"
-        android:text="Phone Number"
+        android:textColorHint="#000000"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewProfileSmartphone"
         app:layout_constraintTop_toBottomOf="@+id/editTextProfileEmail" />
 
