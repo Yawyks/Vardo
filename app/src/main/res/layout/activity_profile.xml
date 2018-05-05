@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/imageViewProfileAvatar"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="100sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
