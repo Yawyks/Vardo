@@ -108,28 +108,23 @@ public class ProfileActivity extends AppCompatActivity {
                     if (myMap.get("First Name") != null) {
                         myUserProfileFirstName = myMap.get("First Name").toString();
                         myEditTextProfileFirstName.setText(myUserProfileFirstName);
-                        Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
                     }
 
                     if (myMap.get("Last Name") != null) {
                         myUserProfileLastName = myMap.get("Last Name").toString();
                         myEditTextProfileLastName.setText(myUserProfileLastName);
-                        Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
                     }
                     if (myMap.get("Email") != null) {
                         myUserProfileEmail = myMap.get("Email").toString();
                         myEditTextProfileEmail.setText(myUserProfileEmail);
-                        Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
                     }
                     if (myMap.get("Phone Number") != null) {
                         myUserProfilePhoneNumber = myMap.get("Phone Number").toString();
                         myEditTextProfilePhoneNumber.setText(myUserProfilePhoneNumber);
-                        Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
                     }
                     if (myMap.get("Profile Avatar") != null) {
                         myUserProfileAvatar = myMap.get("Profile Avatar").toString();
                         Glide.with(getApplication()).load(myUserProfileAvatar).into(myImageViewProfileAvatar);
-                        Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -199,6 +194,9 @@ public class ProfileActivity extends AppCompatActivity {
                     myUserDatabase.updateChildren(myMapAvatar);
 
                     finish();
+
+                    Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
+
                     return;
                 }
             });
