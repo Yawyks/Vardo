@@ -13,6 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     // Variables App
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
+    private Button myButtonProfile;
     private Button myButtonLogout;
 
     @Override
@@ -22,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
 
         myButtonFindRide = findViewById(R.id.buttonFindRide);
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
+        myButtonProfile = findViewById(R.id.buttonProfile);
         myButtonLogout = findViewById(R.id.buttonLogout);
 
         myButtonFindRide.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), FindRideActivity.class);
                 startActivity(i);
+                return;
             }
         });
 
@@ -37,6 +40,16 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), OfferRideActivity.class);
                 startActivity(i);
+                return;
+            }
+        });
+
+        myButtonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ProfileActivity.class);
+                startActivity(i);
+                return;
             }
         });
 

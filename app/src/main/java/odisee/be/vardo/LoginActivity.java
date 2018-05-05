@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Login error.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Login error", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(i);

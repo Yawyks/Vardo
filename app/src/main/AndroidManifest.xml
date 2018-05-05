@@ -9,16 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
-        <activity android:name=".FindRideActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".OfferRideActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".OfferRideSuccessActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -28,9 +18,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
+        <activity
+            android:name=".RegisterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FindRideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OfferRideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OfferRideSuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

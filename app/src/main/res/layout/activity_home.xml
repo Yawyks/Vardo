@@ -71,6 +71,21 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+        android:id="@+id/buttonProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/orange_transparent_button"
+        android:text="PROFILE"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/buttonLogout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -79,6 +94,7 @@
         android:layout_marginStart="16dp"
         android:background="@drawable/orange_transparent_button"
         android:text="LOGOUT"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
