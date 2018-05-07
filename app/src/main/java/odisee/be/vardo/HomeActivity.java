@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // Variables App
+    // App
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
     private Button myButtonProfile;
@@ -46,6 +46,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView myNavigationView = findViewById(R.id.navigation_content);
         myNavigationView.setNavigationItemSelectedListener(this);
+
 
         myButtonFindRide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +97,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         int id = item.getItemId();
+
         switch (id) {
 
             case R.id.navigationDrawerItemHome:

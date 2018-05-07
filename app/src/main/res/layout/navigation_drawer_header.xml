@@ -20,6 +20,7 @@
         android:src="@drawable/profile_avatar_empty"/>
 
     <TextView
+        android:id="@+id/textViewHeaderFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
@@ -28,6 +29,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
     <TextView
+        android:id="@+id/textViewHeaderLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"

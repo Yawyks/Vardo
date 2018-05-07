@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +37,7 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    // Variables App
+    // App
     private ImageView myImageViewProfileAvatar;
 
     private EditText myEditTextProfileFirstName;
@@ -48,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Button myButtonProfileUpdate;
 
-    // Variables Firebase
+    // Firebase
     private FirebaseAuth myFireBaseAuth;
     private DatabaseReference myUserDatabase;
 
@@ -113,7 +112,6 @@ public class ProfileActivity extends AppCompatActivity {
                         myUserProfileFirstName = myMap.get("First Name").toString();
                         myEditTextProfileFirstName.setText(myUserProfileFirstName);
                     }
-
                     if (myMap.get("Last Name") != null) {
                         myUserProfileLastName = myMap.get("Last Name").toString();
                         myEditTextProfileLastName.setText(myUserProfileLastName);
@@ -130,7 +128,6 @@ public class ProfileActivity extends AppCompatActivity {
                         myUserProfileAvatar = myMap.get("Profile Avatar").toString();
                         Glide.with(getApplication()).load(myUserProfileAvatar).into(myImageViewProfileAvatar);
                     }
-
                 }
             }
 

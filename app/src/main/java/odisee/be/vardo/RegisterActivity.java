@@ -1,10 +1,9 @@
 package odisee.be.vardo;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
         myButtonRegister = findViewById(R.id.buttonRegister);
 
         myFirebaseAuth = FirebaseAuth.getInstance();
-
 
         myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
@@ -126,6 +124,5 @@ public class RegisterActivity extends AppCompatActivity {
         myUserDatabase.updateChildren(myMapUserInformation);
 
         finish();
-
     }
 }
