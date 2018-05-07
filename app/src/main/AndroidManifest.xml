@@ -15,11 +15,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"
@@ -30,22 +36,19 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".FindRideActivity"
+            android:label="Find a Ride"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OfferRideActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="Offer a Ride"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".OfferRideSuccessActivity"
+            android:label="Ride Offered"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
+            android:label="Profile"
             android:screenOrientation="portrait" />
     </application>
-
 </manifest>

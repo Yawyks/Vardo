@@ -19,8 +19,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     // App
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
-    private Button myButtonProfile;
-    private Button myButtonLogout;
 
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
@@ -33,8 +31,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         myButtonFindRide = findViewById(R.id.buttonFindRide);
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
-        myButtonProfile = findViewById(R.id.buttonProfile);
-        myButtonLogout = findViewById(R.id.buttonLogout);
 
         myDrawerLayout = findViewById(R.id.navigationDrawer);
         myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
@@ -62,26 +58,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), OfferRideActivity.class);
                 startActivity(i);
-                return;
-            }
-        });
-
-        myButtonProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), ProfileActivity.class);
-                startActivity(i);
-                return;
-            }
-        });
-
-        myButtonLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(HomeActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
                 return;
             }
         });

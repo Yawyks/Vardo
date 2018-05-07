@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="130dp"
             android:background="@drawable/orange_transparent_button"
             android:text="FIND A RIDE"
             android:textColor="@android:color/white"
@@ -78,36 +78,6 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonFindRide"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/buttonProfile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/orange_transparent_button"
-            android:text="PROFILE"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/orange_transparent_button"
-            android:text="LOGOUT"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
@@ -115,7 +85,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/navigation_drawer_header"
         app:menu="@menu/navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
