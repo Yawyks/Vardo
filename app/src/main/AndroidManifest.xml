@@ -32,8 +32,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionbBar"/>
+            android:label="Home"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FindRideActivity"
             android:screenOrientation="portrait" />

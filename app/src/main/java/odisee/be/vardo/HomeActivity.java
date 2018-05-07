@@ -1,28 +1,30 @@
 package odisee.be.vardo;
 
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Gallery;
-import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Variables App
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
     private Button myButtonProfile;
     private Button myButtonLogout;
+
+    // Navigation Drawer
+    private DrawerLayout myDrawerLayout;
+    private ActionBarDrawerToggle myActionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,17 @@ public class HomeActivity extends AppCompatActivity {
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
         myButtonProfile = findViewById(R.id.buttonProfile);
         myButtonLogout = findViewById(R.id.buttonLogout);
+
+        myDrawerLayout = findViewById(R.id.navigationDrawer);
+        myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
+
+        myDrawerLayout.addDrawerListener(myActionBarDrawerToggle);
+
+        myActionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView myNavigationView = findViewById(R.id.navigation_content);
+        myNavigationView.setNavigationItemSelectedListener(this);
 
         myButtonFindRide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,5 +84,38 @@ public class HomeActivity extends AppCompatActivity {
                 return;
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (myActionBarDrawerToggle.onOptionsItemSelected(item)) {
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+
+            case R.id.navigationDrawerItemHome:
+                Intent h = new Intent(HomeActivity.this, HomeActivity.class);
+                startActivity(h);
+                break;
+            case R.id.navigationDrawerItemProfile:
+                Intent p = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(p);
+                break;
+            case R.id.navigationDrawerItemLogout:
+                FirebaseAuth.getInstance().signOut();
+                Intent l = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(l);
+                Toast.makeText(this, "Logged Out Successfully", Toast.LENGTH_LONG).show();
+                finish();
+                break;
+        }
+
+        return false;
     }
 }
