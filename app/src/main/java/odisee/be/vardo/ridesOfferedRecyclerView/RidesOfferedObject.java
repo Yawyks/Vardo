@@ -4,11 +4,13 @@ public class RidesOfferedObject {
 
     private String rideId;
     private String rideDeparture;
+    private String rideDestination;
 
-    public RidesOfferedObject(String rideId, String rideDeparture) {
+    public RidesOfferedObject(String rideId, String rideDeparture, String rideDestination) {
 
         this.rideId = rideId;
         this.rideDeparture = rideDeparture;
+        this.rideDestination = rideDestination;
     }
 
     public String getRideId() {
@@ -18,5 +20,9 @@ public class RidesOfferedObject {
 
     public String getDeparture() {
         return rideDeparture;
+    }
+
+    public String getRideDestination() {
+        return rideDestination;
     }
 }

@@ -40,6 +40,7 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
 
         holder.rideId.setText(myListItem.get(position).getRideId());
         holder.rideDeparture.setText(myListItem.get(position).getDeparture());
+        holder.rideDestination.setText(myListItem.get(position).getRideDestination());
     }
 
     @Override

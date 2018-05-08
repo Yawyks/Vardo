@@ -1,6 +1,9 @@
 package odisee.be.vardo;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,21 +24,21 @@ public class RidesOfferedActivity extends AppCompatActivity {
 
     // App
     private String myUserId;
-    private String rideDeparture;
 
     private RecyclerView myRecyclerViewRidesOffered;
-    private RecyclerView.Adapter myAdapterRidesOffered;
-    private RecyclerView.LayoutManager myLayoutManagerRidesOffered;
-    private ArrayList ridesOfferedResult = new ArrayList<RidesOfferedObject>();
 
-    // Firebase
+    private RecyclerView.Adapter myAdapterRidesOffered;
+
+    private RecyclerView.LayoutManager myLayoutManagerRidesOffered;
+
+    private ArrayList ridesOfferedResult = new ArrayList<RidesOfferedObject>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rides_offered);
 
-        myRecyclerViewRidesOffered = (RecyclerView) findViewById(R.id.recyclerViewRidesOffered);
+        myRecyclerViewRidesOffered = findViewById(R.id.recyclerViewRidesOffered);
         myRecyclerViewRidesOffered.setNestedScrollingEnabled(false);
         myRecyclerViewRidesOffered.setHasFixedSize(true);
 
@@ -80,12 +83,17 @@ public class RidesOfferedActivity extends AppCompatActivity {
 
                     String rideId = dataSnapshot.getKey();
                     String departure = "";
+                    String destination = "";
 
-                    if(dataSnapshot.child("Departure").getValue() != null){
+                    if (dataSnapshot.child("Departure").getValue() != null) {
                         departure = dataSnapshot.child("Departure").getValue().toString();
                     }
 
-                    RidesOfferedObject obj = new RidesOfferedObject(rideId, departure);
+                    if (dataSnapshot.child("Destination").getValue() != null) {
+                        departure = dataSnapshot.child("Destination").getValue().toString();
+                    }
+
+                    RidesOfferedObject obj = new RidesOfferedObject(rideId, departure, destination);
                     ridesOfferedResult.add(obj);
 
                     myAdapterRidesOffered.notifyDataSetChanged();

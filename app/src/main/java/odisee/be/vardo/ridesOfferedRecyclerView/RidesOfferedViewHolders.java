@@ -10,6 +10,7 @@ public class RidesOfferedViewHolders extends RecyclerView.ViewHolder implements 
 
     public TextView rideId;
     public TextView rideDeparture;
+    public TextView rideDestination;
 
     public RidesOfferedViewHolders(View itemView) {
         super(itemView);
@@ -18,6 +19,7 @@ public class RidesOfferedViewHolders extends RecyclerView.ViewHolder implements 
 
         rideId = itemView.findViewById(R.id.rideId);
         rideDeparture = itemView.findViewById(R.id.rideDeparture);
+        rideDestination = itemView.findViewById(R.id.rideDestination);
     }
 
     @Override

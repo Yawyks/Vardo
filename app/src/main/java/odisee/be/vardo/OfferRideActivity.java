@@ -215,28 +215,10 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myEditTextDateTime.setText(myFinalDay + "/" + myFinalMonth + "/" + myFinalYear + " " + myFinalHour + ":" + myFinalMinute);
     }
 
-    /*
-    private void addOffer() {
-
-        myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
-        myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
-        myUserDateTime = myEditTextDateTime.getText().toString();
-
-        Map myMapUserInformation = new HashMap();
-
-        myMapUserInformation.put("Departure", myUserFromLocation);
-        myMapUserInformation.put("Destination", myUserToLocation);
-        myMapUserInformation.put("Date/Time", myUserDateTime);
-
-        myUserDatabase.updateChildren(myMapUserInformation);
-
-        finish();
-    }
-    */
-
     private void addOffer(){
 
         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
         myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
 
@@ -248,9 +230,9 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myUserDatabase.child(myRidesOfferedId).setValue(true);
 
         HashMap myHashMap = new HashMap();
-        myHashMap.put("User", myUserId);
         myHashMap.put("Departure", myUserFromLocation);
         myHashMap.put("Destination", myUserToLocation);
+        myHashMap.put("Owner", myUserId);
 
         myHistoryDatabase.child(myRidesOfferedId).updateChildren(myHashMap);
 
