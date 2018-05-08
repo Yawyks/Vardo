@@ -39,6 +39,7 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
     public void onBindViewHolder(@NonNull RidesOfferedViewHolders holder, int position) {
 
         holder.rideId.setText(myListItem.get(position).getRideId());
+        holder.rideDeparture.setText(myListItem.get(position).getDeparture());
     }
 
     @Override

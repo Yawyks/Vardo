@@ -34,6 +34,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
     int myDay, myMonth, myYear, myHour, myMinute;
     int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
+
     // App
     private Spinner mySpinnerFromLocation;
     private Spinner mySpinnerToLocation;
@@ -111,18 +112,12 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
                     Toast.makeText(OfferRideActivity.this, "Select Date/Time", Toast.LENGTH_LONG).show();
                 } else {
 
-                    String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                    myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Offers").child(myUserId);
-
                     addOffer();
 
                     Intent l = new Intent(OfferRideActivity.this, HomeActivity.class);
                     startActivity(l);
 
                     finish();
-
-                    addRidesOffered();
 
                     Toast.makeText(OfferRideActivity.this, "Your offer has been posted successfully.", Toast.LENGTH_LONG).show();
                 }
@@ -220,6 +215,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myEditTextDateTime.setText(myFinalDay + "/" + myFinalMonth + "/" + myFinalYear + " " + myFinalHour + ":" + myFinalMinute);
     }
 
+    /*
     private void addOffer() {
 
         myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
@@ -236,10 +232,13 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         finish();
     }
+    */
 
-    private void addRidesOffered(){
+    private void addOffer(){
 
         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
+        myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
 
         myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
         myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
@@ -250,8 +249,11 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         HashMap myHashMap = new HashMap();
         myHashMap.put("User", myUserId);
-        myHashMap.put("Rating", 0);
+        myHashMap.put("Departure", myUserFromLocation);
+        myHashMap.put("Destination", myUserToLocation);
+
         myHistoryDatabase.child(myRidesOfferedId).updateChildren(myHashMap);
 
+        finish();
     }
 }
