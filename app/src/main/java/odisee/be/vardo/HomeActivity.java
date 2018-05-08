@@ -31,6 +31,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         myButtonFindRide = findViewById(R.id.buttonFindRide);
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
 
+        // Navigation Drawer
+
         myDrawerLayout = findViewById(R.id.navigationDrawer);
         myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
 
@@ -41,7 +43,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView myNavigationView = findViewById(R.id.navigation_content);
         myNavigationView.setNavigationItemSelectedListener(this);
-
 
         myButtonFindRide.setOnClickListener(new View.OnClickListener() {
             @Override

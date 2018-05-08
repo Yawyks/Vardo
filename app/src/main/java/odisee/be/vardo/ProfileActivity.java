@@ -7,7 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +39,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // App
     private ImageView myImageViewProfileAvatar;
@@ -46,6 +50,10 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText myEditTextProfilePhoneNumber;
 
     private Button myButtonProfileUpdate;
+
+    // Navigation Drawer
+    private DrawerLayout myDrawerLayout;
+    private ActionBarDrawerToggle myActionBarDrawerToggle;
 
     // Firebase
     private FirebaseAuth myFireBaseAuth;
@@ -75,6 +83,18 @@ public class ProfileActivity extends AppCompatActivity {
         // Buttons
         myButtonProfileUpdate = findViewById(R.id.buttonProfileUpdate);
 
+        // Navigation Drawer
+        myDrawerLayout = findViewById(R.id.navigationDrawer);
+        myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
+
+        myDrawerLayout.addDrawerListener(myActionBarDrawerToggle);
+
+        myActionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView myNavigationView = findViewById(R.id.navigation_content);
+        myNavigationView.setNavigationItemSelectedListener(this);
+
         myFireBaseAuth = FirebaseAuth.getInstance();
         myUserId = myFireBaseAuth.getCurrentUser().getUid();
         myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId);
@@ -100,6 +120,44 @@ public class ProfileActivity extends AppCompatActivity {
                 updateUserInformation();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (myActionBarDrawerToggle.onOptionsItemSelected(item)) {
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+
+            case R.id.navigationDrawerItemHome:
+                Intent h = new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(h);
+                break;
+            case R.id.navigationDrawerItemRidesOffered:
+                Intent r = new Intent(ProfileActivity.this, RidesOfferedActivity.class);
+                startActivity(r);
+                break;
+            case R.id.navigationDrawerItemProfile:
+                Intent p = new Intent(ProfileActivity.this, ProfileActivity.class);
+                startActivity(p);
+                break;
+            case R.id.navigationDrawerItemLogout:
+                FirebaseAuth.getInstance().signOut();
+                Intent l = new Intent(ProfileActivity.this, LoginActivity.class);
+                startActivity(l);
+                finish();
+                break;
+        }
+
+        return false;
     }
 
     private void getUserProfileInformation() {
