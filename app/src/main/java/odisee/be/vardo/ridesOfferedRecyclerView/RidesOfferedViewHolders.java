@@ -15,7 +15,7 @@ public class RidesOfferedViewHolders extends RecyclerView.ViewHolder implements 
 
         itemView.setOnClickListener(this);
 
-        rideId = (TextView) itemView.findViewById(R.id.rideId);
+        rideId = itemView.findViewById(R.id.rideId);
     }
 
     @Override

@@ -13,11 +13,11 @@ import odisee.be.vardo.R;
 
 public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHolders> {
 
-    private List<RidesOfferedObject> myItemList;
+    private List<RidesOfferedObject> myListItem;
     private Context myContext;
 
-    public RidesOfferedAdapter(List<RidesOfferedObject> myItemList, Context myContext){
-        this.myItemList = myItemList;
+    public RidesOfferedAdapter(List<RidesOfferedObject> myListItem, Context myContext) {
+        this.myListItem = myListItem;
         this.myContext = myContext;
     }
 
@@ -30,19 +30,20 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
 
         myLayoutView.setLayoutParams(myLayoutParams);
 
-        RidesOfferedViewHolders myRidesOfferedViewHolders = new RidesOfferedViewHolders(myLayoutView);
+        RidesOfferedViewHolders ridesOfferedViewHolders = new RidesOfferedViewHolders(myLayoutView);
 
-        return myRidesOfferedViewHolders;
+        return ridesOfferedViewHolders;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RidesOfferedViewHolders holder, int position) {
 
-        holder.rideId.setText(myItemList.get(position).getRideId());
+        holder.rideId.setText(myListItem.get(position).getRideId());
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getItemCount()
+    {
+        return this.myListItem.size();
     }
 }

@@ -50,7 +50,8 @@
             android:name=".RidesOfferedActivity"
             android:label="Rides Offered"
             android:screenOrientation="portrait" />
-        <activity android:name=".ForgotPasswordActivity"
+        <activity
+            android:name=".ForgotPasswordActivity"
             android:label="Reset Password"
             android:screenOrientation="portrait" />
     </application>
