@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +50,8 @@ public class RidesOfferedActivity extends AppCompatActivity {
         myRecyclerViewRidesOffered.setLayoutManager(myLayoutManagerRidesOffered);
         myAdapterRidesOffered = new RidesOfferedAdapter(getDataRidesOffered(), RidesOfferedActivity.this);
         myRecyclerViewRidesOffered.setAdapter(myAdapterRidesOffered);
+
+        myButtonRemoveRidesOffered = findViewById(R.id.buttonRemoveRideOffered);
 
         myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserRidesOfferedIds();

@@ -201,7 +201,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         Calendar myCalendar = Calendar.getInstance();
 
-        myHour = myCalendar.get(Calendar.HOUR_OF_DAY);
+        myHour = myCalendar.get(Calendar.HOUR);
         myMinute = myCalendar.get(Calendar.MINUTE);
 
         TimePickerDialog myTimePickerDialog = new TimePickerDialog(OfferRideActivity.this, OfferRideActivity.this,
@@ -216,20 +216,16 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myFinalHour = hourOfDay;
         myFinalMinute = minute;
 
-        myEditTextDateTime.setText(myFinalDay + "/" + myFinalMonth + "/" + myFinalYear + " " + myFinalHour + ":" + myFinalMinute);
+        myEditTextDateTime.setText(myFinalDay + "-" + myFinalMonth + "-" + myFinalYear + " " + myFinalHour + ":" + myFinalMinute);
     }
 
     private void addOffer(){
-
-        Calendar cal = Calendar.getInstance(Locale.getDefault());
 
         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
         myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
         myUserDateTime = myEditTextDateTime.getText().toString();
-
-        String myUserDateTime = DateFormat.format("dd-MM-yyyy hh:mm", cal).toString();
 
         myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
         myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
@@ -239,10 +235,11 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myUserDatabase.child(myRidesOfferedId).setValue(true);
 
         HashMap myHashMap = new HashMap();
+
+        myHashMap.put("Date", myUserDateTime);
         myHashMap.put("Departure", myUserFromLocation);
         myHashMap.put("Destination", myUserToLocation);
         myHashMap.put("Owner", myUserId);
-        myHashMap.put("Date", myUserDateTime);
 
         myHistoryDatabase.child(myRidesOfferedId).updateChildren(myHashMap);
 
