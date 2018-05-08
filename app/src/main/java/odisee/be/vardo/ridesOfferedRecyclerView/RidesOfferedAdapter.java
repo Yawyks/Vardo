@@ -38,9 +38,9 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
     @Override
     public void onBindViewHolder(@NonNull RidesOfferedViewHolders holder, int position) {
 
-        holder.rideId.setText(myListItem.get(position).getRideId());
         holder.rideDeparture.setText(myListItem.get(position).getDeparture());
         holder.rideDestination.setText(myListItem.get(position).getRideDestination());
+        holder.rideDateTime.setText(myListItem.get(position).getRideDateTime());
     }
 
     @Override

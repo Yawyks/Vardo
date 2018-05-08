@@ -1,12 +1,11 @@
 package odisee.be.vardo;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -16,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedAdapter;
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedObject;
@@ -32,6 +33,8 @@ public class RidesOfferedActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager myLayoutManagerRidesOffered;
 
     private ArrayList ridesOfferedResult = new ArrayList<RidesOfferedObject>();
+
+    private Button myButtonRemoveRidesOffered;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +84,9 @@ public class RidesOfferedActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
 
-                    String rideId = dataSnapshot.getKey();
                     String departure = "";
                     String destination = "";
+                    String date = "";
 
                     if (dataSnapshot.child("Departure").getValue() != null) {
                         departure = dataSnapshot.child("Departure").getValue().toString();
@@ -93,7 +96,11 @@ public class RidesOfferedActivity extends AppCompatActivity {
                         destination = dataSnapshot.child("Destination").getValue().toString();
                     }
 
-                    RidesOfferedObject obj = new RidesOfferedObject(rideId, departure, destination);
+                    if (dataSnapshot.child("Date").getValue() != null) {
+                        date = dataSnapshot.child("Date").getValue().toString();
+                    }
+
+                    RidesOfferedObject obj = new RidesOfferedObject(departure, destination, date);
                     ridesOfferedResult.add(obj);
 
                     myAdapterRidesOffered.notifyDataSetChanged();
@@ -109,5 +116,15 @@ public class RidesOfferedActivity extends AppCompatActivity {
 
     private ArrayList<RidesOfferedObject> getDataRidesOffered() {
         return ridesOfferedResult;
+    }
+
+    private String getDate(Long timestamp){
+
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+        cal.setTimeInMillis(timestamp*1000);
+
+        String date = DateFormat.format("dd-MM-yyyy hh:mm", cal).toString();
+
+        return date;
     }
 }

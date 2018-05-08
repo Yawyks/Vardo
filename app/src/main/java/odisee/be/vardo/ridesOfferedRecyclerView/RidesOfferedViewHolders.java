@@ -8,18 +8,18 @@ import odisee.be.vardo.R;
 
 public class RidesOfferedViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView rideId;
     public TextView rideDeparture;
     public TextView rideDestination;
+    public TextView rideDateTime;
 
     public RidesOfferedViewHolders(View itemView) {
         super(itemView);
 
         itemView.setOnClickListener(this);
 
-        rideId = itemView.findViewById(R.id.rideId);
         rideDeparture = itemView.findViewById(R.id.rideDeparture);
         rideDestination = itemView.findViewById(R.id.rideDestination);
+        rideDateTime = itemView.findViewById(R.id.rideDateTime);
     }
 
     @Override

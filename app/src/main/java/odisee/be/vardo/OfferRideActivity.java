@@ -21,13 +21,17 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class OfferRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -217,10 +221,15 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
     private void addOffer(){
 
+        Calendar cal = Calendar.getInstance(Locale.getDefault());
+
         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
         myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
+        myUserDateTime = myEditTextDateTime.getText().toString();
+
+        String myUserDateTime = DateFormat.format("dd-MM-yyyy hh:mm", cal).toString();
 
         myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
         myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
@@ -233,9 +242,15 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myHashMap.put("Departure", myUserFromLocation);
         myHashMap.put("Destination", myUserToLocation);
         myHashMap.put("Owner", myUserId);
+        myHashMap.put("Date", myUserDateTime);
 
         myHistoryDatabase.child(myRidesOfferedId).updateChildren(myHashMap);
 
         finish();
+    }
+
+    private Long getCurrentTimestamp() {
+        Long timestamp = System.currentTimeMillis()/1000;
+        return timestamp;
     }
 }
