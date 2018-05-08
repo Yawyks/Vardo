@@ -30,20 +30,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OfferRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,  DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class OfferRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
+    int myDay, myMonth, myYear, myHour, myMinute;
+    int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
     // App
     private Spinner mySpinnerFromLocation;
     private Spinner mySpinnerToLocation;
-
     private EditText myEditTextDateTime;
-    int myDay, myMonth, myYear, myHour, myMinute;
-    int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
-
     private Button myButtonOfferRideNext;
 
     // Firebase
     private DatabaseReference myUserDatabase;
+    private DatabaseReference myHistoryDatabase;
     private String myUserFromLocation;
     private String myUserToLocation;
     private String myUserDateTime;
@@ -104,16 +103,14 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
                 final String myUserCheckToLocation = mySpinnerToLocation.getSelectedItem().toString();
                 final String myUserCheckDateTime = myEditTextDateTime.getText().toString();
 
-                if(myUserCheckFromLocation.matches("Departure")){
+                if (myUserCheckFromLocation.matches("Departure")) {
                     Toast.makeText(OfferRideActivity.this, "Select Departure", Toast.LENGTH_LONG).show();
-                }
-                else if(myUserCheckToLocation.matches("Destination")){
+                } else if (myUserCheckToLocation.matches("Destination")) {
                     Toast.makeText(OfferRideActivity.this, "Select Destination", Toast.LENGTH_LONG).show();
-                }
-                else if(myUserCheckDateTime.matches("")){
+                } else if (myUserCheckDateTime.matches("")) {
                     Toast.makeText(OfferRideActivity.this, "Select Date/Time", Toast.LENGTH_LONG).show();
-                }
-                else{
+                } else {
+
                     String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                     myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Offers").child(myUserId);
@@ -124,6 +121,8 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
                     startActivity(l);
 
                     finish();
+
+                    addRidesOffered();
 
                     Toast.makeText(OfferRideActivity.this, "Your offer has been posted successfully.", Toast.LENGTH_LONG).show();
                 }
@@ -236,5 +235,23 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myUserDatabase.updateChildren(myMapUserInformation);
 
         finish();
+    }
+
+    private void addRidesOffered(){
+
+        String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
+        myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
+
+        String myRidesOfferedId = myHistoryDatabase.push().getKey();
+
+        myUserDatabase.child(myRidesOfferedId).setValue(true);
+
+        HashMap myHashMap = new HashMap();
+        myHashMap.put("User", myUserId);
+        myHashMap.put("Rating", 0);
+        myHistoryDatabase.child(myRidesOfferedId).updateChildren(myHashMap);
+
     }
 }

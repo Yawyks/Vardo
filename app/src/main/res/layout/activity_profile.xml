@@ -36,7 +36,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:src="@drawable/profile_avatar_empty"></ImageView>
+            android:src="@drawable/profile_avatar_empty"/>
 
     </RelativeLayout>
 

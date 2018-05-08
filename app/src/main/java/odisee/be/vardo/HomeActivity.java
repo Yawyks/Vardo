@@ -82,6 +82,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent h = new Intent(HomeActivity.this, HomeActivity.class);
                 startActivity(h);
                 break;
+            case R.id.navigationDrawerItemRidesOffered:
+                Intent r = new Intent(HomeActivity.this, RidesOfferedActivity.class);
+                startActivity(r);
+                break;
             case R.id.navigationDrawerItemProfile:
                 Intent p = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(p);
@@ -90,7 +94,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 FirebaseAuth.getInstance().signOut();
                 Intent l = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(l);
-                Toast.makeText(this, "Logged Out Successfully", Toast.LENGTH_LONG).show();
                 finish();
                 break;
         }

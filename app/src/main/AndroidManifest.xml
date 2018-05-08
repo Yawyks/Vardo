@@ -41,14 +41,12 @@
         <activity
             android:name=".OfferRideActivity"
             android:label="Offer a Ride"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".OfferRideSuccessActivity"
-            android:label="Ride Offered"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
             android:label="Profile"
             android:screenOrientation="portrait" />
+        <activity android:name=".RidesOfferedActivity"></activity>
     </application>
+
 </manifest>
