@@ -91,6 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
+    <!--
     <TextView
         android:id="@+id/textViewOr"
         android:layout_width="wrap_content"
@@ -125,6 +126,7 @@
         android:background="#e01003"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewForgotPassword" />
+
 
     <Button
         android:id="@+id/buttonLoginFacebook"
@@ -161,5 +163,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLoginFacebook"
         app:layout_constraintVertical_bias="0.0" />
-
+-->
 </android.support.constraint.ConstraintLayout>
