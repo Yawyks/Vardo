@@ -46,7 +46,13 @@
             android:name=".ProfileActivity"
             android:label="Profile"
             android:screenOrientation="portrait" />
-        <activity android:name=".RidesOfferedActivity"></activity>
+        <activity
+            android:name=".RidesOfferedActivity"
+            android:label="Rides Offered"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ForgotPasswordActivity"
+            android:label="Reset Password"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

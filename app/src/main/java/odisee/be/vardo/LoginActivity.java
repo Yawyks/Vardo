@@ -16,11 +16,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Text;
+
 public class LoginActivity extends AppCompatActivity {
 
     // Variables App
     private EditText myEditTextLoginEmail;
     private EditText myEditTextLoginPassword;
+    private TextView myTextViewForgotPassword;
     private Button myButtonLogin;
     private TextView myTextViewRegister;
 
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         myTextViewRegister = findViewById(R.id.textViewRegister);
         myEditTextLoginEmail = findViewById(R.id.editTextLoginEmail);
         myEditTextLoginPassword = findViewById(R.id.editTextLoginPassword);
+        myTextViewForgotPassword = findViewById(R.id.textViewForgotPassword);
         myButtonLogin = findViewById(R.id.buttonLogin);
 
         myFirebaseAuth = FirebaseAuth.getInstance();
@@ -44,6 +48,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), RegisterActivity.class);
+                startActivity(i);
+                return;
+            }
+        });
+
+        myTextViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ForgotPasswordActivity.class);
                 startActivity(i);
                 return;
             }
