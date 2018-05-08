@@ -90,7 +90,7 @@ public class RidesOfferedActivity extends AppCompatActivity {
                     }
 
                     if (dataSnapshot.child("Destination").getValue() != null) {
-                        departure = dataSnapshot.child("Destination").getValue().toString();
+                        destination = dataSnapshot.child("Destination").getValue().toString();
                     }
 
                     RidesOfferedObject obj = new RidesOfferedObject(rideId, departure, destination);
