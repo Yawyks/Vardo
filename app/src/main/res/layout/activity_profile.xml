@@ -4,8 +4,7 @@
     android:id="@+id/navigationDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:fitsSystemWindows="true">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -89,6 +88,8 @@
             android:layout_marginTop="44dp"
             android:background="@null"
             android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColorHint="#000000"
@@ -111,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="27dp"
             android:background="@null"
             android:hint="Phone Number"
             android:inputType="phone"
@@ -130,6 +131,33 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewProfileEmail"
             app:srcCompat="@drawable/ic_smartphone" />
 
+        <EditText
+            android:id="@+id/editTextProfileType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:background="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Account Type"
+            android:inputType="text|phone"
+            android:textColorHint="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewProfileType"
+            app:layout_constraintTop_toBottomOf="@+id/editTextProfilePhoneNumber" />
+
+
+        <ImageView
+            android:id="@+id/imageViewProfileType"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewProfileSmartphone"
+            app:srcCompat="@drawable/ic_details" />
+
         <Button
             android:id="@+id/buttonProfileUpdate"
             android:layout_width="match_parent"
@@ -140,6 +168,7 @@
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="16dp" />
+
 
     </android.support.constraint.ConstraintLayout>
 

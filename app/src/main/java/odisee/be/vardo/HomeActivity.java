@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // App
+    // App - Buttons
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
 
@@ -28,11 +28,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Buttons
         myButtonFindRide = findViewById(R.id.buttonFindRide);
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
 
         // Navigation Drawer
-
         myDrawerLayout = findViewById(R.id.navigationDrawer);
         myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
 
@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView myNavigationView = findViewById(R.id.navigation_content);
         myNavigationView.setNavigationItemSelectedListener(this);
 
+        // Listeners
         myButtonFindRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    // Functions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (myActionBarDrawerToggle.onOptionsItemSelected(item)) {

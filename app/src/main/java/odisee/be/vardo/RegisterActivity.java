@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String myEmail = myEditTextRegisterEmail.getText().toString();
                 final String myPassword = myEditTextRegisterPassword.getText().toString();
 
-                if (myEmail.matches("")) {
+                if (myEmail.matches("") || !myEmail.contains("odisee.be")) {
                     Toast.makeText(RegisterActivity.this, "Invalid email address", Toast.LENGTH_SHORT).show();
                 } else if (myPassword.matches("")) {
                     Toast.makeText(RegisterActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Toast.makeText(RegisterActivity.this, "Registered completed successfully", Toast.LENGTH_LONG).show();
 
-                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                Intent i = new Intent(RegisterActivity.this, ProfileActivity.class);
                                 startActivity(i);
                                 finish();
                                 return;
@@ -123,11 +123,21 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void updateUserInformation() {
 
+        String myUserType;
+
         myUserRegisterEmail = myEditTextRegisterEmail.getText().toString();
+
+        if (myUserRegisterEmail.contains("student")) {
+            myUserType = "Student";
+        } else {
+            myUserType = "Employee";
+        }
 
         Map myMapUserInformation = new HashMap();
 
         myMapUserInformation.put("Email", myUserRegisterEmail);
+        myMapUserInformation.put("Account Type", myUserType);
+
 
         myUserDatabase.updateChildren(myMapUserInformation);
 

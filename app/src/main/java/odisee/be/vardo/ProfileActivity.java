@@ -19,12 +19,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,15 +38,28 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // App
+    // App - Image Views
     private ImageView myImageViewProfileAvatar;
 
+    // App - Edit Texts
     private EditText myEditTextProfileFirstName;
     private EditText myEditTextProfileLastName;
     private EditText myEditTextProfileEmail;
     private EditText myEditTextProfilePhoneNumber;
+    private EditText myEditTextProfileType;
 
+    // App - Buttons
     private Button myButtonProfileUpdate;
+
+    // App - Variables
+    private String myUserId;
+    private String myUserProfileAvatar;
+    private String myUserProfileFirstName;
+    private String myUserProfileLastName;
+    private String myUserProfileEmail;
+    private String myUserProfilePhoneNumber;
+    private String myUserProfileType;
+    private int status = 0;
 
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
@@ -58,14 +68,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     // Firebase
     private FirebaseAuth myFireBaseAuth;
     private DatabaseReference myUserDatabase;
-
-    private String myUserId;
-    private String myUserProfileAvatar;
-    private String myUserProfileFirstName;
-    private String myUserProfileLastName;
-    private String myUserProfileEmail;
-    private String myUserProfilePhoneNumber;
-
     private Uri myUriAvatarResult;
 
     @Override
@@ -79,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         myEditTextProfileLastName = findViewById(R.id.editTextProfileLastName);
         myEditTextProfileEmail = findViewById(R.id.editTextProfileEmail);
         myEditTextProfilePhoneNumber = findViewById(R.id.editTextProfilePhoneNumber);
+        myEditTextProfileType = findViewById(R.id.editTextProfileType);
 
         // Buttons
         myButtonProfileUpdate = findViewById(R.id.buttonProfileUpdate);
@@ -101,6 +104,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
         getUserProfileInformation();
 
+        // Listeners
         myImageViewProfileAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,11 +121,29 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onClick(View v) {
 
-                updateUserInformation();
+                if (myEditTextProfileFirstName.getText().toString().equals("")) {
+                    Toast.makeText(ProfileActivity.this, "Please, fill in your first name", Toast.LENGTH_SHORT).show();
+                    status = 1;
+                } else if (myEditTextProfileLastName.getText().toString().equals("")) {
+                    Toast.makeText(ProfileActivity.this, "Please, fill in your last name", Toast.LENGTH_SHORT).show();
+                    status = 1;
+                } else if (myEditTextProfilePhoneNumber.getText().toString().equals("")) {
+                    Toast.makeText(ProfileActivity.this, "Please, fill in your phone number", Toast.LENGTH_SHORT).show();
+                    status = 1;
+                } else if (status == 1) {
+                    updateUserInformation();
+                    Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
+                    finish();
+                    status = 0;
+                } else if (status == 0) {
+                    updateUserInformation();
+                    finish();
+                }
             }
         });
     }
 
+    // Functions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (myActionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -182,6 +204,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         myUserProfilePhoneNumber = myMap.get("Phone Number").toString();
                         myEditTextProfilePhoneNumber.setText(myUserProfilePhoneNumber);
                     }
+                    if (myMap.get("Account Type") != null) {
+                        myUserProfileType = myMap.get("Account Type").toString();
+                        myEditTextProfileType.setText(myUserProfileType);
+                    }
                     if (myMap.get("Profile Avatar") != null) {
                         myUserProfileAvatar = myMap.get("Profile Avatar").toString();
                         Glide.with(getApplication()).load(myUserProfileAvatar).into(myImageViewProfileAvatar);
@@ -200,19 +226,21 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
         myUserProfileFirstName = myEditTextProfileFirstName.getText().toString();
         myUserProfileLastName = myEditTextProfileLastName.getText().toString();
-        myUserProfileEmail = myEditTextProfileEmail.getText().toString();
         myUserProfilePhoneNumber = myEditTextProfilePhoneNumber.getText().toString();
 
         Map myMapUserInformation = new HashMap();
 
         myMapUserInformation.put("First Name", myUserProfileFirstName);
         myMapUserInformation.put("Last Name", myUserProfileLastName);
-        myMapUserInformation.put("Email", myUserProfileEmail);
         myMapUserInformation.put("Phone Number", myUserProfilePhoneNumber);
 
         myUserDatabase.updateChildren(myMapUserInformation);
 
+        /*
+
+        // Email update
         FirebaseUser myUser = FirebaseAuth.getInstance().getCurrentUser();
+
         myUser.updateEmail(myUserProfileEmail)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -222,6 +250,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         }
                     }
                 });
+        */
 
         if (myUriAvatarResult != null) {
 
@@ -263,9 +292,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
                     myUserDatabase.updateChildren(myMapAvatar);
 
-                    finish();
+                    Toast.makeText(ProfileActivity.this, "Avatar updated successfully", Toast.LENGTH_LONG).show();
 
-                    Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_LONG).show();
+                    finish();
 
                     return;
                 }
