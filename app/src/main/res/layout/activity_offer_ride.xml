@@ -75,7 +75,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="34dp"
             android:ems="10"
-            android:hint="Date / Time"
+            android:hint="- Select date -"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewDateTime"
