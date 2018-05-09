@@ -16,18 +16,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.w3c.dom.Text;
-
 public class LoginActivity extends AppCompatActivity {
 
-    // Variables App
+    // App - Edit Texts
     private EditText myEditTextLoginEmail;
     private EditText myEditTextLoginPassword;
+
+    // App - Text Views
+
     private TextView myTextViewForgotPassword;
-    private Button myButtonLogin;
     private TextView myTextViewRegister;
 
-    // Variables Firebase
+    // App - Buttons
+    private Button myButtonLogin;
+
+    // Firebase
     private FirebaseAuth myFirebaseAuth;
     private FirebaseAuth.AuthStateListener myFireBaseAuthStateListener;
 
@@ -36,14 +39,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        myTextViewRegister = findViewById(R.id.textViewRegister);
+        // Edit Texts
         myEditTextLoginEmail = findViewById(R.id.editTextLoginEmail);
         myEditTextLoginPassword = findViewById(R.id.editTextLoginPassword);
+
+
+        // Text Views
+        myTextViewRegister = findViewById(R.id.textViewRegister);
         myTextViewForgotPassword = findViewById(R.id.textViewForgotPassword);
+
+        // Buttons
         myButtonLogin = findViewById(R.id.buttonLogin);
 
         myFirebaseAuth = FirebaseAuth.getInstance();
 
+        // Listeners
         myTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String myPassword = myEditTextLoginPassword.getText().toString();
 
                 if (myEmail.matches("")) {
-                    Toast.makeText(LoginActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Invalid email address", Toast.LENGTH_SHORT).show();
                 } else if (myPassword.matches("")) {
                     Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
                 } else {
@@ -93,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(i);
@@ -107,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // Functions
     @Override
     protected void onStart() {
         super.onStart();

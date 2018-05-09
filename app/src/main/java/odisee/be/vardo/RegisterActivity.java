@@ -22,30 +22,37 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // Variables App
+    //  App - Edit Texts
     private EditText myEditTextRegisterEmail;
     private EditText myEditTextRegisterPassword;
+
+    // App - Buttons
     private Button myButtonRegister;
 
-    // Variables Firebase
+    // App - Variables
+    private String myUserRegisterEmail;
+
+    // Firebase
     private FirebaseAuth myFirebaseAuth;
     private FirebaseAuth.AuthStateListener myFireBaseAuthStateListener;
     private DatabaseReference myUserDatabase;
 
-    private String myUserId;
-    private String myUserRegisterEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Edit Texts
         myEditTextRegisterEmail = findViewById(R.id.editTextRegisterEmail);
         myEditTextRegisterPassword = findViewById(R.id.editTextRegisterPassword);
+
+        // Buttons
         myButtonRegister = findViewById(R.id.buttonRegister);
 
         myFirebaseAuth = FirebaseAuth.getInstance();
 
+        // Listeners
         myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
             @Override
@@ -68,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String myPassword = myEditTextRegisterPassword.getText().toString();
 
                 if (myEmail.matches("")) {
-                    Toast.makeText(RegisterActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Invalid email address", Toast.LENGTH_SHORT).show();
                 } else if (myPassword.matches("")) {
                     Toast.makeText(RegisterActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
                 } else {
@@ -77,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Sign-up error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Sign-up failed", Toast.LENGTH_SHORT).show();
                             } else {
                                 String myUserId = myFirebaseAuth.getCurrentUser().getUid();
 
@@ -101,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Functions
     @Override
     protected void onStart() {
         super.onStart();

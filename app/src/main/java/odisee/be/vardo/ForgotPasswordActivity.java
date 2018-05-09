@@ -1,10 +1,9 @@
 package odisee.be.vardo;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,10 +27,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
+        // Edit Texts
         myEditTextEmailForgot = findViewById(R.id.editTextEmailForgot);
+
+        // Buttons
         myButtonForgotPassword = findViewById(R.id.buttonForgotPassword);
+
+        // Firebase
         myFirebaseAuth = FirebaseAuth.getInstance();
 
+        // Listeners
         myButtonForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,19 +45,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                 if (userEmail.matches("")) {
                     Toast.makeText(ForgotPasswordActivity.this, "Invalid e-mail address", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     myFirebaseAuth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 Intent i = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                                 finish();
                                 startActivity(i);
                                 Toast.makeText(ForgotPasswordActivity.this, "Reset password link sent successfully", Toast.LENGTH_SHORT).show();
                                 return;
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(ForgotPasswordActivity.this, "Error sending password link", Toast.LENGTH_SHORT).show();
                             }
                         }
