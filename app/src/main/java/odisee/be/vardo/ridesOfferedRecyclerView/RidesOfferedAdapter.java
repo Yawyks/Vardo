@@ -8,6 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
 import odisee.be.vardo.R;
@@ -45,26 +51,20 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
 
         final RidesOfferedObject infoData = myListItem.get(position);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(myContext, "Onclick called at position " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
-
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
 
                 removeItem(infoData);
-
                 return true;
             }
         });
     }
 
     private void removeItem(RidesOfferedObject infoData) {
-        int currPosition = myListItem.indexOf(infoData);
+
+        final int currPosition = myListItem.indexOf(infoData);
+
         myListItem.remove(currPosition);
         notifyItemRemoved(currPosition);
     }

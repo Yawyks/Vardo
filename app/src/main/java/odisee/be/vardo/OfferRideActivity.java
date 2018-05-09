@@ -201,7 +201,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         Calendar myCalendar = Calendar.getInstance();
 
-        myHour = myCalendar.get(Calendar.HOUR);
+        myHour = myCalendar.get(Calendar.HOUR_OF_DAY);
         myMinute = myCalendar.get(Calendar.MINUTE);
 
         TimePickerDialog myTimePickerDialog = new TimePickerDialog(OfferRideActivity.this, OfferRideActivity.this,

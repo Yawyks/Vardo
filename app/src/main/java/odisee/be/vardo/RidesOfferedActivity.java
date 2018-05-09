@@ -34,8 +34,6 @@ public class RidesOfferedActivity extends AppCompatActivity {
 
     private ArrayList ridesOfferedResult = new ArrayList<RidesOfferedObject>();
 
-    private Button myButtonRemoveRidesOffered;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +48,8 @@ public class RidesOfferedActivity extends AppCompatActivity {
         myAdapterRidesOffered = new RidesOfferedAdapter(getDataRidesOffered(), RidesOfferedActivity.this);
         myRecyclerViewRidesOffered.setAdapter(myAdapterRidesOffered);
 
-        myButtonRemoveRidesOffered = findViewById(R.id.buttonRemoveRideOffered);
-
         myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         getUserRidesOfferedIds();
     }
 
@@ -77,7 +74,7 @@ public class RidesOfferedActivity extends AppCompatActivity {
         });
     }
 
-    private void FetchRidesOfferedInformation(String rideKey) {
+    private void FetchRidesOfferedInformation(final String rideKey) {
 
         DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered").child(rideKey);
 
