@@ -83,6 +83,8 @@ public class RidesOfferedActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
 
+                    String rideId = dataSnapshot.getKey();
+
                     String departure = "";
                     String destination = "";
                     String date = "";
@@ -99,7 +101,7 @@ public class RidesOfferedActivity extends AppCompatActivity {
                         date = dataSnapshot.child("Date Departure").getValue().toString();
                     }
 
-                    RidesOfferedObject obj = new RidesOfferedObject(departure, destination, date);
+                    RidesOfferedObject obj = new RidesOfferedObject(rideId, departure, destination, date);
                     ridesOfferedResult.add(obj);
 
                     myAdapterRidesOffered.notifyDataSetChanged();

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +65,14 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
     private void removeItem(RidesOfferedObject infoData) {
 
         final int currPosition = myListItem.indexOf(infoData);
+        final String rideId = myListItem.get(currPosition).getRideId();
+        final String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference myDatabaseReferenceRidesOffered = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
+        myDatabaseReferenceRidesOffered.child(rideId).removeValue();
+
+        DatabaseReference myDatabaseReferenceRidesOfferedUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
+        myDatabaseReferenceRidesOfferedUsers.child(rideId).removeValue();
 
         myListItem.remove(currPosition);
         notifyItemRemoved(currPosition);
