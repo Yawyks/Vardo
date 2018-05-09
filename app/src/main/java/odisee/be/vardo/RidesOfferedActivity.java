@@ -1,10 +1,16 @@
 package odisee.be.vardo;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +27,7 @@ import java.util.Locale;
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedAdapter;
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedObject;
 
-public class RidesOfferedActivity extends AppCompatActivity {
+public class RidesOfferedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // App
     private String myUserId;
@@ -34,6 +40,10 @@ public class RidesOfferedActivity extends AppCompatActivity {
 
     private ArrayList ridesOfferedResult = new ArrayList<RidesOfferedObject>();
 
+    // Navigation Drawer
+    private DrawerLayout myDrawerLayout;
+    private ActionBarDrawerToggle myActionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +53,18 @@ public class RidesOfferedActivity extends AppCompatActivity {
         myRecyclerViewRidesOffered.setNestedScrollingEnabled(false);
         myRecyclerViewRidesOffered.setHasFixedSize(true);
 
+        // Navigation Drawer
+        myDrawerLayout = findViewById(R.id.navigationDrawer);
+        myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
+
+        myDrawerLayout.addDrawerListener(myActionBarDrawerToggle);
+
+        myActionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView myNavigationView = findViewById(R.id.navigation_content);
+        myNavigationView.setNavigationItemSelectedListener(this);
+
         myLayoutManagerRidesOffered = new LinearLayoutManager(RidesOfferedActivity.this);
         myRecyclerViewRidesOffered.setLayoutManager(myLayoutManagerRidesOffered);
         myAdapterRidesOffered = new RidesOfferedAdapter(getDataRidesOffered(), RidesOfferedActivity.this);
@@ -51,6 +73,49 @@ public class RidesOfferedActivity extends AppCompatActivity {
         myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         getUserRidesOfferedIds();
+    }
+
+    // Functions
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (myActionBarDrawerToggle.onOptionsItemSelected(item)) {
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+
+            case R.id.navigationDrawerItemHome:
+                Intent h = new Intent(RidesOfferedActivity.this, HomeActivity.class);
+                startActivity(h);
+                break;
+            case R.id.navigationDrawerItemRidesOffered:
+                Intent r = new Intent(RidesOfferedActivity.this, RidesOfferedActivity.class);
+                startActivity(r);
+                break;
+            case R.id.navigationDrawerItemProfile:
+                Intent p = new Intent(RidesOfferedActivity.this, ProfileActivity.class);
+                startActivity(p);
+                break;
+            case R.id.navigationDrawerItemSchools:
+                Intent s = new Intent(RidesOfferedActivity.this, SchoolsActivity.class);
+                startActivity(s);
+                break;
+            case R.id.navigationDrawerItemLogout:
+                FirebaseAuth.getInstance().signOut();
+                Intent l = new Intent(RidesOfferedActivity.this, LoginActivity.class);
+                startActivity(l);
+                finish();
+                break;
+        }
+
+        return false;
     }
 
     private void getUserRidesOfferedIds() {
