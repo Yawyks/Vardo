@@ -108,9 +108,9 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
                 final String myUserCheckToLocation = mySpinnerToLocation.getSelectedItem().toString();
                 final String myUserCheckDateTime = myEditTextDateTime.getText().toString();
 
-                if (myUserCheckFromLocation.matches("Departure")) {
+                if (myUserCheckFromLocation.matches("- Select departure -")) {
                     Toast.makeText(OfferRideActivity.this, "Select Departure", Toast.LENGTH_LONG).show();
-                } else if (myUserCheckToLocation.matches("Destination")) {
+                } else if (myUserCheckToLocation.matches("- Select destination -")) {
                     Toast.makeText(OfferRideActivity.this, "Select Destination", Toast.LENGTH_LONG).show();
                 } else if (myUserCheckDateTime.matches("")) {
                     Toast.makeText(OfferRideActivity.this, "Select Date/Time", Toast.LENGTH_LONG).show();
@@ -168,7 +168,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         mySpinnerFromLocation = (Spinner) findViewById(R.id.spinnerFromLocation);
         List<String> list = new ArrayList<String>();
-        list.add("Departure");
+        list.add("- Select departure -");
         list.add("Campus Antwerpen");
         list.add("Campus Brugge");
         list.add("Campus Brussel");
@@ -182,7 +182,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         mySpinnerToLocation = (Spinner) findViewById(R.id.spinnerToLocation);
         List<String> list = new ArrayList<String>();
-        list.add("Destination");
+        list.add("- Select destination -");
         list.add("Campus Antwerpen");
         list.add("Campus Brugge");
         list.add("Campus Brussel");
@@ -236,7 +236,8 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         HashMap myHashMap = new HashMap();
 
-        myHashMap.put("Date", myUserDateTime);
+        myHashMap.put("Date/Time of Created Ride", getCurrentTimestamp());
+        myHashMap.put("Date/Time of Departure", myUserDateTime);
         myHashMap.put("Departure", myUserFromLocation);
         myHashMap.put("Destination", myUserToLocation);
         myHashMap.put("Owner", myUserId);

@@ -13,7 +13,6 @@ public class RidesOfferedObject {
         this.rideDateTime = rideDateTime;
     }
 
-
     public String getDeparture() {
         return rideDeparture;
     }
