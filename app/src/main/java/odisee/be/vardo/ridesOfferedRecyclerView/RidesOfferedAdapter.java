@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -36,16 +37,40 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RidesOfferedViewHolders holder, int position) {
+    public void onBindViewHolder(@NonNull RidesOfferedViewHolders holder, final int position) {
 
         holder.rideDeparture.setText(myListItem.get(position).getDeparture());
         holder.rideDestination.setText(myListItem.get(position).getRideDestination());
         holder.rideDateTime.setText(myListItem.get(position).getRideDateTime());
+
+        final RidesOfferedObject infoData = myListItem.get(position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(myContext, "Onclick called at position " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                removeItem(infoData);
+
+                return true;
+            }
+        });
+    }
+
+    private void removeItem(RidesOfferedObject infoData) {
+        int currPosition = myListItem.indexOf(infoData);
+        myListItem.remove(currPosition);
+        notifyItemRemoved(currPosition);
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return this.myListItem.size();
     }
 }

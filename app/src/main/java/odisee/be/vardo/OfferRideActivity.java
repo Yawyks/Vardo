@@ -236,8 +236,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         HashMap myHashMap = new HashMap();
 
-        myHashMap.put("Date/Time of Created Ride", getCurrentTimestamp());
-        myHashMap.put("Date/Time of Departure", myUserDateTime);
+        myHashMap.put("Date Departure", myUserDateTime);
         myHashMap.put("Departure", myUserFromLocation);
         myHashMap.put("Destination", myUserToLocation);
         myHashMap.put("Owner", myUserId);

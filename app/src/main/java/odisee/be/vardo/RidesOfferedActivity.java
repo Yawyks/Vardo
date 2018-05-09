@@ -98,8 +98,8 @@ public class RidesOfferedActivity extends AppCompatActivity {
                         destination = dataSnapshot.child("Destination").getValue().toString();
                     }
 
-                    if (dataSnapshot.child("Date").getValue() != null) {
-                        date = dataSnapshot.child("Date").getValue().toString();
+                    if (dataSnapshot.child("Date Departure").getValue() != null) {
+                        date = dataSnapshot.child("Date Departure").getValue().toString();
                     }
 
                     RidesOfferedObject obj = new RidesOfferedObject(departure, destination, date);
