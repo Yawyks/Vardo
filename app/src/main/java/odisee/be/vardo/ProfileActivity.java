@@ -171,6 +171,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 Intent p = new Intent(ProfileActivity.this, ProfileActivity.class);
                 startActivity(p);
                 break;
+            case R.id.navigationDrawerItemSchools:
+                Intent s = new Intent(ProfileActivity.this, SchoolsActivity.class);
+                startActivity(s);
+                break;
             case R.id.navigationDrawerItemLogout:
                 FirebaseAuth.getInstance().signOut();
                 Intent l = new Intent(ProfileActivity.this, LoginActivity.class);

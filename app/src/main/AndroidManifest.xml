@@ -55,5 +55,7 @@
             android:name=".RidesOfferedActivity"
             android:label="Rides Offered"
             android:screenOrientation="portrait" />
+        <activity android:name=".SchoolsActivity"></activity>
     </application>
+
 </manifest>

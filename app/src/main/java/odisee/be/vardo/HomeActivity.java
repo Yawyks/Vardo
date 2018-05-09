@@ -92,6 +92,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent p = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(p);
                 break;
+            case R.id.navigationDrawerItemSchools:
+                Intent s = new Intent(HomeActivity.this, SchoolsActivity.class);
+                startActivity(s);
+                break;
             case R.id.navigationDrawerItemLogout:
                 FirebaseAuth.getInstance().signOut();
                 Intent l = new Intent(HomeActivity.this, LoginActivity.class);
