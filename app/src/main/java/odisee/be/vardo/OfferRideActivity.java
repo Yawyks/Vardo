@@ -1,6 +1,8 @@
 package odisee.be.vardo;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,19 +34,23 @@ import java.util.List;
 public class OfferRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     // Date & Time Picker
+
     int myDay, myMonth, myYear, myHour, myMinute;
     int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
+
     // App
     private Spinner mySpinnerFromLocation;
     private Spinner mySpinnerToLocation;
     private EditText myEditTextDateTime;
     private Button myButtonOfferRideNext;
+
     // Firebase
     private DatabaseReference myUserDatabase;
     private DatabaseReference myHistoryDatabase;
     private String myUserFromLocation;
     private String myUserToLocation;
     private String myUserDateTime;
+
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
     private ActionBarDrawerToggle myActionBarDrawerToggle;
@@ -186,7 +192,6 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         mySpinnerToLocation = (Spinner) findViewById(R.id.spinnerToLocation);
         List<String> list = new ArrayList<String>();
         list.add("- Select destination -");
-        list.add("- Select departure -");
         list.add("Campus Aalst");
         list.add("Campus Brussel");
         list.add("Campus Dilbeek");
@@ -228,7 +233,6 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
     private void addOffer() {
 
         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
 
         myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
         myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();

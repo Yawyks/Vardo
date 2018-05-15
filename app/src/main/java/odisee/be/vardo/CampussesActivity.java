@@ -133,6 +133,6 @@ public class CampussesActivity extends FragmentActivity implements OnMapReadyCal
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(brussels));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(9));
     }
 }
