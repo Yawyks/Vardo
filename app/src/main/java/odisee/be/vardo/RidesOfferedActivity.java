@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 
@@ -164,6 +165,7 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
 
                     if (dataSnapshot.child("Date Departure").getValue() != null) {
                         date = dataSnapshot.child("Date Departure").getValue().toString();
+                        Log.d("Date:", date);
                     }
 
                     RidesOfferedObject obj = new RidesOfferedObject(rideId, departure, destination, date);
@@ -189,7 +191,7 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
         Calendar cal = Calendar.getInstance(Locale.getDefault());
         cal.setTimeInMillis(timestamp*1000);
 
-        String date = DateFormat.format("dd-MM-yyyy hh:mm", cal).toString();
+        String date = DateFormat.format("dd MMMM yyyy hh:mm", cal).toString();
 
         return date;
     }

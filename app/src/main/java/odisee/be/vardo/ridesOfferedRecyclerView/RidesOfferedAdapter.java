@@ -1,6 +1,9 @@
 package odisee.be.vardo.ridesOfferedRecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.location.Address;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import odisee.be.vardo.R;
+import odisee.be.vardo.RidesOfferedActivity;
 
 public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHolders> {
 
@@ -52,7 +56,29 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
             @Override
             public boolean onLongClick(View v) {
 
-                removeItem(infoData);
+                AlertDialog.Builder alert = new AlertDialog.Builder(myContext);
+                alert.setTitle("Remove offered ride");
+                alert.setMessage("Delete offered ride?");
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeItem(infoData);
+                        dialog.dismiss();
+
+                    }
+                });
+                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                alert.show();
+
                 return true;
             }
         });
