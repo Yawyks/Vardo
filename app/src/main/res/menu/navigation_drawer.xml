@@ -16,7 +16,7 @@
             android:icon="@drawable/ic_profile"
             android:title="Profile"/>
         <item
-            android:id="@+id/navigationDrawerItemSchools"
+            android:id="@+id/navigationDrawerItemCampus"
             android:icon="@drawable/ic_list"
             android:title="Campusses"/>
         <item

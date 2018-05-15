@@ -171,8 +171,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 Intent p = new Intent(ProfileActivity.this, ProfileActivity.class);
                 startActivity(p);
                 break;
-            case R.id.navigationDrawerItemSchools:
-                Intent s = new Intent(ProfileActivity.this, SchoolsActivity.class);
+            case R.id.navigationDrawerItemCampus:
+                Intent s = new Intent(ProfileActivity.this, CampussesActivity.class);
                 startActivity(s);
                 break;
             case R.id.navigationDrawerItemLogout:

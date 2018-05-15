@@ -2,4 +2,5 @@
     <string name="app_name">Vardo</string>
     <string name="open">Open> Navigation Drawer</string>
     <string name="close">Close Navigation Drawer</string>
+    <string name="title_activity_campusses">Map</string>
 </resources>
