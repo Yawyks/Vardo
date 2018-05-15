@@ -88,6 +88,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent r = new Intent(HomeActivity.this, RidesOfferedActivity.class);
                 startActivity(r);
                 break;
+            case R.id.navigationDrawerItemRidesBooked:
+                Intent b = new Intent(HomeActivity.this, RidesBookedActivity.class);
+                startActivity(b);
+                break;
             case R.id.navigationDrawerItemProfile:
                 Intent p = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(p);

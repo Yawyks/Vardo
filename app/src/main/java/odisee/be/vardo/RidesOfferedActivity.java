@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedAdapter;
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedObject;
+import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedViewHolders;
 
 public class RidesOfferedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -97,6 +98,10 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
             case R.id.navigationDrawerItemRidesOffered:
                 Intent r = new Intent(RidesOfferedActivity.this, RidesOfferedActivity.class);
                 startActivity(r);
+                break;
+            case R.id.navigationDrawerItemRidesBooked:
+                Intent b = new Intent(RidesOfferedActivity.this, RidesBookedActivity.class);
+                startActivity(b);
                 break;
             case R.id.navigationDrawerItemProfile:
                 Intent p = new Intent(RidesOfferedActivity.this, ProfileActivity.class);

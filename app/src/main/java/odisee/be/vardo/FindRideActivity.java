@@ -1,10 +1,18 @@
 package odisee.be.vardo;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,9 +23,8 @@ import java.util.ArrayList;
 
 import odisee.be.vardo.ridesFoundRecyclerView.RidesFoundAdapter;
 import odisee.be.vardo.ridesFoundRecyclerView.RidesFoundObject;
-import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedObject;
 
-public class FindRideActivity extends AppCompatActivity {
+public class FindRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // App
     private RecyclerView myRecycleViewRidesFound;
@@ -25,10 +32,36 @@ public class FindRideActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager myRecyclerViewLayoutManagerRidesFound;
     private ArrayList resultFindRides = new ArrayList<RidesFoundObject>();
 
+    // App
+    private TextView myTextViewFromLocation;
+    private TextView myTextViewToLocation;
+    private TextView myTextViewDateTime;
+
+    // Navigation Drawer
+    private DrawerLayout myDrawerLayout;
+    private ActionBarDrawerToggle myActionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_ride);
+
+        // App
+        myTextViewFromLocation = findViewById(R.id.rideDeparture);
+        myTextViewToLocation = findViewById(R.id.rideDestination);
+        myTextViewDateTime = findViewById(R.id.rideDeparture);
+
+        // Navigation Drawer
+        myDrawerLayout = findViewById(R.id.navigationDrawer);
+        myActionBarDrawerToggle = new ActionBarDrawerToggle(this, myDrawerLayout, R.string.open, R.string.close);
+
+        myDrawerLayout.addDrawerListener(myActionBarDrawerToggle);
+
+        myActionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView myNavigationView = findViewById(R.id.navigation_content);
+        myNavigationView.setNavigationItemSelectedListener(this);
 
         myRecycleViewRidesFound = findViewById(R.id.recyclerViewRidesFound);
         myRecycleViewRidesFound.setNestedScrollingEnabled(true);
@@ -41,6 +74,53 @@ public class FindRideActivity extends AppCompatActivity {
 
         getRideIds();
 
+    }
+
+    // Functions
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (myActionBarDrawerToggle.onOptionsItemSelected(item)) {
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+
+            case R.id.navigationDrawerItemHome:
+                Intent h = new Intent(FindRideActivity.this, HomeActivity.class);
+                startActivity(h);
+                break;
+            case R.id.navigationDrawerItemRidesOffered:
+                Intent r = new Intent(FindRideActivity.this, RidesOfferedActivity.class);
+                startActivity(r);
+                break;
+            case R.id.navigationDrawerItemRidesBooked:
+                Intent b = new Intent(FindRideActivity.this, RidesBookedActivity.class);
+                startActivity(b);
+                break;
+            case R.id.navigationDrawerItemProfile:
+                Intent p = new Intent(FindRideActivity.this, ProfileActivity.class);
+                startActivity(p);
+                break;
+            case R.id.navigationDrawerItemCampus:
+                Intent s = new Intent(FindRideActivity.this, CampussesActivity.class);
+                startActivity(s);
+                break;
+            case R.id.navigationDrawerItemLogout:
+                FirebaseAuth.getInstance().signOut();
+                Intent l = new Intent(FindRideActivity.this, LoginActivity.class);
+                startActivity(l);
+                finish();
+                break;
+        }
+
+        return false;
     }
 
     private void getRideIds() {
@@ -108,4 +188,5 @@ public class FindRideActivity extends AppCompatActivity {
     private ArrayList<RidesFoundObject> getDataSetRidesFound() {
         return resultFindRides;
     }
+
 }

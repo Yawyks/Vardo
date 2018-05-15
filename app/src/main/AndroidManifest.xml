@@ -39,7 +39,8 @@
             android:name=".HomeActivity"
             android:label="Home"
             android:screenOrientation="portrait" />
-        <activity android:name=".FindRideActivity"
+        <activity
+            android:name=".FindRideActivity"
             android:label="Find a Ride"
             android:screenOrientation="portrait" />
         <activity
@@ -62,6 +63,7 @@
         <activity
             android:name=".CampussesActivity"
             android:label="@string/title_activity_campusses" />
+        <activity android:name=".RidesBookedActivity"></activity>
     </application>
 
 </manifest>

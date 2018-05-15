@@ -167,6 +167,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 Intent r = new Intent(ProfileActivity.this, RidesOfferedActivity.class);
                 startActivity(r);
                 break;
+            case R.id.navigationDrawerItemRidesBooked:
+                Intent b = new Intent(ProfileActivity.this, RidesBookedActivity.class);
+                startActivity(b);
+                break;
             case R.id.navigationDrawerItemProfile:
                 Intent p = new Intent(ProfileActivity.this, ProfileActivity.class);
                 startActivity(p);

@@ -152,6 +152,10 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
                 Intent r = new Intent(OfferRideActivity.this, RidesOfferedActivity.class);
                 startActivity(r);
                 break;
+            case R.id.navigationDrawerItemRidesBooked:
+                Intent b = new Intent(OfferRideActivity.this, RidesBookedActivity.class);
+                startActivity(b);
+                break;
             case R.id.navigationDrawerItemProfile:
                 Intent p = new Intent(OfferRideActivity.this, ProfileActivity.class);
                 startActivity(p);
