@@ -36,9 +36,6 @@ import java.util.Map;
 
 public class OfferRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
-    int myDay, myMonth, myYear, myHour, myMinute;
-    int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
-
     // App
     private Spinner mySpinnerFromLocation;
     private Spinner mySpinnerToLocation;
@@ -55,6 +52,10 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
     private ActionBarDrawerToggle myActionBarDrawerToggle;
+
+    // Date & Time Picker
+    int myDay, myMonth, myYear, myHour, myMinute;
+    int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myEditTextDateTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Calendar myCalendar = Calendar.getInstance();
 
                 myDay = myCalendar.get(Calendar.DAY_OF_MONTH);
@@ -218,6 +220,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         myEditTextDateTime.setText(myFinalDay + "-" + myFinalMonth + "-" + myFinalYear + " " + myFinalHour + ":" + myFinalMinute);
     }
+
 
     private void addOffer(){
 
