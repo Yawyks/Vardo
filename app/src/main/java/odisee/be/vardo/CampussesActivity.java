@@ -3,15 +3,12 @@ package odisee.be.vardo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CampussesActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -22,7 +19,7 @@ public class CampussesActivity extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campusses);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -32,6 +29,7 @@ public class CampussesActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
+        mMap.setInfoWindowAdapter(new CustomInfoAdapter(CampussesActivity.this));
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
         LatLng brussels = new LatLng(50.850346, 4.351721);
@@ -133,7 +131,7 @@ public class CampussesActivity extends FragmentActivity implements OnMapReadyCal
                 .title("Campus Sint-Niklaas")
                 .snippet("Parking")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-        
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(brussels));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
