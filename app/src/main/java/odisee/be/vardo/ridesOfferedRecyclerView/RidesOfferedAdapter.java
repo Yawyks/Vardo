@@ -3,7 +3,6 @@ package odisee.be.vardo.ridesOfferedRecyclerView;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.location.Address;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import odisee.be.vardo.R;
-import odisee.be.vardo.RidesOfferedActivity;
 
 public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHolders> {
 
@@ -25,6 +23,7 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
     private Context myContext;
 
     public RidesOfferedAdapter(List<RidesOfferedObject> myListItem, Context myContext) {
+
         this.myListItem = myListItem;
         this.myContext = myContext;
     }

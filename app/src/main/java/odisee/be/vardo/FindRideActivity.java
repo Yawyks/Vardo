@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,11 +31,6 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
     private RecyclerView.LayoutManager myRecyclerViewLayoutManagerRidesFound;
     private ArrayList resultFindRides = new ArrayList<RidesFoundObject>();
 
-    // App
-    private TextView myTextViewFromLocation;
-    private TextView myTextViewToLocation;
-    private TextView myTextViewDateTime;
-
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
     private ActionBarDrawerToggle myActionBarDrawerToggle;
@@ -45,11 +39,6 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_ride);
-
-        // App
-        myTextViewFromLocation = findViewById(R.id.rideDeparture);
-        myTextViewToLocation = findViewById(R.id.rideDestination);
-        myTextViewDateTime = findViewById(R.id.rideDeparture);
 
         // Navigation Drawer
         myDrawerLayout = findViewById(R.id.navigationDrawer);
@@ -128,6 +117,7 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
         DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -149,6 +139,7 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
         DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered").child(rideKey);
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

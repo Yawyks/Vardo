@@ -48,10 +48,6 @@
             android:label="Offer a Ride"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RidesBookedActivity"
-            android:label="Rides Booked"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ProfileActivity"
             android:label="Profile"
             android:screenOrientation="portrait" />
@@ -59,15 +55,17 @@
             android:name=".RidesOfferedActivity"
             android:label="Rides Offered"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".RidesBookedActivity"
+            android:label="Ride Booked"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CampussesActivity"
+            android:label="@string/title_activity_campusses" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".CampussesActivity"
-            android:label="@string/title_activity_campusses" />
-        <activity android:name=".RidesBookedActivity"></activity>
     </application>
 
 </manifest>

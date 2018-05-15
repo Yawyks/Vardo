@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,12 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedAdapter;
 import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedObject;
-import odisee.be.vardo.ridesOfferedRecyclerView.RidesOfferedViewHolders;
 
 public class RidesOfferedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -127,6 +123,7 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
         DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -148,6 +145,7 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
         DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered").child(rideKey);
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -186,15 +184,5 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
 
     private ArrayList<RidesOfferedObject> getDataRidesOffered() {
         return ridesOfferedResult;
-    }
-
-    private String getDate(Long timestamp) {
-
-        Calendar cal = Calendar.getInstance(Locale.getDefault());
-        cal.setTimeInMillis(timestamp * 1000);
-
-        String date = DateFormat.format("dd MMMM yyyy hh:mm", cal).toString();
-
-        return date;
     }
 }
