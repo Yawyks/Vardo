@@ -15,6 +15,20 @@
         android:focusableInTouchMode="true"
         tools:context=".ProfileActivity">
 
+        <ImageView
+            android:id="@+id/imageViewPencilPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/imageViewPencilFirstName"
+            android:layout_below="@+id/imageViewPencilFirstName"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/editTextProfilePhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/editTextProfileEmail"
+            app:srcCompat="@drawable/ic_edit" />
+
         <RelativeLayout
             android:id="@+id/relativeLayoutHeader"
             android:layout_width="match_parent"
@@ -44,6 +58,25 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/profile_avatar_empty" />
+
+            <ImageView
+                android:id="@+id/imageViewPencilFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="36dp"
+                android:layout_marginEnd="111dp"
+                app:srcCompat="@drawable/ic_edit" />
+
+            <ImageView
+                android:id="@+id/imageViewPencilLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageViewPencilFirstName"
+                android:layout_below="@+id/imageViewPencilFirstName"
+                android:layout_marginTop="-36dp"
+                app:srcCompat="@drawable/ic_edit" />
 
         </RelativeLayout>
 

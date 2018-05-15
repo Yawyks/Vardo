@@ -40,6 +40,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
     // App - Image Views
     private ImageView myImageViewProfileAvatar;
+    private ImageView myImageViewPencilFirstName;
+    private ImageView myImageViewPencilLastName;
+    private ImageView myImageViewPencilPhoneNumber;
 
     // App - Edit Texts
     private EditText myEditTextProfileFirstName;
@@ -83,6 +86,11 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         myEditTextProfilePhoneNumber = findViewById(R.id.editTextProfilePhoneNumber);
         myEditTextProfileType = findViewById(R.id.editTextProfileType);
 
+        // Image View
+        myImageViewPencilFirstName = findViewById(R.id.imageViewPencilFirstName);
+        myImageViewPencilLastName = findViewById(R.id.imageViewPencilLastName);
+        myImageViewPencilPhoneNumber = findViewById(R.id.imageViewPencilPhoneNumber);
+
         // Buttons
         myButtonProfileUpdate = findViewById(R.id.buttonProfileUpdate);
 
@@ -114,6 +122,27 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 i.setType("image/*");
 
                 startActivityForResult(i, 1);
+            }
+        });
+
+        myImageViewPencilFirstName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myEditTextProfileFirstName.requestFocus();
+            }
+        });
+
+        myImageViewPencilLastName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myEditTextProfileLastName.requestFocus();
+            }
+        });
+
+        myImageViewPencilPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myEditTextProfilePhoneNumber.requestFocus();
             }
         });
 
