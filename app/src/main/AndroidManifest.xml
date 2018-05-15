@@ -48,6 +48,10 @@
             android:label="Offer a Ride"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".RidesBookedActivity"
+            android:label="Rides Booked"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ProfileActivity"
             android:label="Profile"
             android:screenOrientation="portrait" />
