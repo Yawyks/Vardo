@@ -21,41 +21,33 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 public class OfferRideActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
+    // Date & Time Picker
+    int myDay, myMonth, myYear, myHour, myMinute;
+    int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
     // App
     private Spinner mySpinnerFromLocation;
     private Spinner mySpinnerToLocation;
     private EditText myEditTextDateTime;
     private Button myButtonOfferRideNext;
-
     // Firebase
     private DatabaseReference myUserDatabase;
     private DatabaseReference myHistoryDatabase;
     private String myUserFromLocation;
     private String myUserToLocation;
     private String myUserDateTime;
-
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
     private ActionBarDrawerToggle myActionBarDrawerToggle;
-
-    // Date & Time Picker
-    int myDay, myMonth, myYear, myHour, myMinute;
-    int myFinalDay, myFinalMonth, myFinalYear, myFinalHour, myFinalMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,15 +142,22 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
                 Intent h = new Intent(OfferRideActivity.this, HomeActivity.class);
                 startActivity(h);
                 break;
+            case R.id.navigationDrawerItemRidesOffered:
+                Intent r = new Intent(OfferRideActivity.this, RidesOfferedActivity.class);
+                startActivity(r);
+                break;
             case R.id.navigationDrawerItemProfile:
                 Intent p = new Intent(OfferRideActivity.this, ProfileActivity.class);
                 startActivity(p);
+                break;
+            case R.id.navigationDrawerItemCampus:
+                Intent s = new Intent(OfferRideActivity.this, CampussesActivity.class);
+                startActivity(s);
                 break;
             case R.id.navigationDrawerItemLogout:
                 FirebaseAuth.getInstance().signOut();
                 Intent l = new Intent(OfferRideActivity.this, LoginActivity.class);
                 startActivity(l);
-                Toast.makeText(this, "Logged Out Successfully", Toast.LENGTH_LONG).show();
                 finish();
                 break;
         }
@@ -171,9 +170,11 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         mySpinnerFromLocation = (Spinner) findViewById(R.id.spinnerFromLocation);
         List<String> list = new ArrayList<String>();
         list.add("- Select departure -");
-        list.add("Campus Antwerpen");
-        list.add("Campus Brugge");
+        list.add("Campus Aalst");
         list.add("Campus Brussel");
+        list.add("Campus Dilbeek");
+        list.add("Campus Gent");
+        list.add("Campus Sint-Niklaas");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -185,9 +186,12 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         mySpinnerToLocation = (Spinner) findViewById(R.id.spinnerToLocation);
         List<String> list = new ArrayList<String>();
         list.add("- Select destination -");
-        list.add("Campus Antwerpen");
-        list.add("Campus Brugge");
+        list.add("- Select departure -");
+        list.add("Campus Aalst");
         list.add("Campus Brussel");
+        list.add("Campus Dilbeek");
+        list.add("Campus Gent");
+        list.add("Campus Sint-Niklaas");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -221,10 +225,10 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myEditTextDateTime.setText(myFinalDay + "-" + myFinalMonth + "-" + myFinalYear + " " + myFinalHour + ":" + myFinalMinute);
     }
 
-
-    private void addOffer(){
+    private void addOffer() {
 
         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
         myUserFromLocation = mySpinnerFromLocation.getSelectedItem().toString();
         myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
@@ -250,7 +254,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
     }
 
     private Long getCurrentTimestamp() {
-        Long timestamp = System.currentTimeMillis()/1000;
+        Long timestamp = System.currentTimeMillis() / 1000;
         return timestamp;
     }
 }
