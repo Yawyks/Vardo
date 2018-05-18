@@ -68,8 +68,8 @@ public class RidesFoundAdapter extends RecyclerView.Adapter<RidesFoundViewHolder
 
                         String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                        myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Booked");
-                        myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Rides Booked");
+                        myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("RidesBooked");
+                        myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("RidesBooked");
 
                         String myRidesBookedId = myHistoryDatabase.push().getKey();
 

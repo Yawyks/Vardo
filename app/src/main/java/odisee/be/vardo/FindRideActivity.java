@@ -114,7 +114,7 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
 
     private void getRideIds() {
 
-        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
+        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("RidesOffered");
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -136,7 +136,7 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
 
     private void FetchRidesOfferedInformation(final String rideKey) {
 
-        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered").child(rideKey);
+        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("RidesOffered").child(rideKey);
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 

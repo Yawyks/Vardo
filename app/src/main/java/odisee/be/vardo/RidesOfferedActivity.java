@@ -120,7 +120,7 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
 
     private void getUserRidesOfferedIds() {
 
-        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
+        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("RidesOffered");
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -142,7 +142,7 @@ public class RidesOfferedActivity extends AppCompatActivity implements Navigatio
 
     private void FetchRidesOfferedInformation(final String rideKey) {
 
-        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Rides Offered").child(rideKey);
+        DatabaseReference ridesOfferedDatabaseReference = FirebaseDatabase.getInstance().getReference().child("RidesOffered").child(rideKey);
 
         ridesOfferedDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 

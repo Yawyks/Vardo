@@ -89,10 +89,10 @@ public class RidesOfferedAdapter extends RecyclerView.Adapter<RidesOfferedViewHo
         final String rideId = myListItem.get(currPosition).getRideId();
         final String myUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DatabaseReference myDatabaseReferenceRidesOffered = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
+        DatabaseReference myDatabaseReferenceRidesOffered = FirebaseDatabase.getInstance().getReference().child("RidesOffered");
         myDatabaseReferenceRidesOffered.child(rideId).removeValue();
 
-        DatabaseReference myDatabaseReferenceRidesOfferedUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
+        DatabaseReference myDatabaseReferenceRidesOfferedUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("RidesOffered");
         myDatabaseReferenceRidesOfferedUsers.child(rideId).removeValue();
 
         myListItem.remove(currPosition);

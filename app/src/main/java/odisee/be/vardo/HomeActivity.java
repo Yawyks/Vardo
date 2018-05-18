@@ -28,12 +28,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-        // Notifications
-        FirebaseMessaging.getInstance().subscribeToTopic("Rides Offered");
+        // Topics
+        FirebaseMessaging.getInstance().subscribeToTopic("RidesBooked");
 
         // Buttons
-
         myButtonFindRide = findViewById(R.id.buttonFindRide);
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
 

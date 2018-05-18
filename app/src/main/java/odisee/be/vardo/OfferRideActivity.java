@@ -240,8 +240,8 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
         myUserToLocation = mySpinnerToLocation.getSelectedItem().toString();
         myUserDateTime = myEditTextDateTime.getText().toString();
 
-        myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("Rides Offered");
-        myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("Rides Offered");
+        myUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(myUserId).child("RidesOffered");
+        myHistoryDatabase = FirebaseDatabase.getInstance().getReference().child("RidesOffered");
 
         String myRidesOfferedId = myHistoryDatabase.push().getKey();
 
