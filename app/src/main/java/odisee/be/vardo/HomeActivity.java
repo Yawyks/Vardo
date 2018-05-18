@@ -7,12 +7,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,8 +29,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Topics
-        FirebaseMessaging.getInstance().subscribeToTopic("RidesBooked");
+        // Notification
+        Common.currentToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d("My token", Common.currentToken);
 
         // Buttons
         myButtonFindRide = findViewById(R.id.buttonFindRide);
