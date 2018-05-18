@@ -80,6 +80,8 @@ public class RidesFoundAdapter extends RecyclerView.Adapter<RidesFoundViewHolder
                         myHashMap.put("Date Departure", myItemList.get(position).getRideDateTime());
                         myHashMap.put("Departure", myItemList.get(position).getDeparture());
                         myHashMap.put("Destination", myItemList.get(position).getRideDestination());
+                        myHashMap.put("Owner", myItemList.get(position).getRideOwnerId());
+                        myHashMap.put("Traveler", myUserId);
 
                         myHistoryDatabase.child(myRidesBookedId).updateChildren(myHashMap);
 

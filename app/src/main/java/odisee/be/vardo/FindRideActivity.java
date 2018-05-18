@@ -145,6 +145,8 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
                 if (dataSnapshot.exists()) {
 
                     String rideId = dataSnapshot.getKey();
+                    String ownerId = dataSnapshot.child("Owner").getValue().toString();
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                     String departure = "";
                     String destination = "";
@@ -162,7 +164,7 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
                         date = dataSnapshot.child("Date Departure").getValue().toString();
                     }
 
-                    RidesFoundObject obj = new RidesFoundObject(rideId, departure, destination, date);
+                    RidesFoundObject obj = new RidesFoundObject(rideId, departure, destination, date, ownerId, userId);
                     resultFindRides.add(obj);
 
                     myRecycleViewAdapterRidesFound.notifyDataSetChanged();

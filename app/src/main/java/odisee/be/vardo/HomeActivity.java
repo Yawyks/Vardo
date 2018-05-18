@@ -12,10 +12,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // App - Buttons
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
 
@@ -28,7 +28,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        // Notifications
+        FirebaseMessaging.getInstance().subscribeToTopic("Rides Offered");
+
         // Buttons
+
         myButtonFindRide = findViewById(R.id.buttonFindRide);
         myButtonOfferRide = findViewById(R.id.buttonOfferRide);
 

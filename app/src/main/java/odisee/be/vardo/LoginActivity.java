@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         myEditTextLoginEmail = findViewById(R.id.editTextLoginEmail);
         myEditTextLoginPassword = findViewById(R.id.editTextLoginPassword);
 
-
         // Text Views
         myTextViewRegister = findViewById(R.id.textViewRegister);
         myTextViewForgotPassword = findViewById(R.id.textViewForgotPassword);

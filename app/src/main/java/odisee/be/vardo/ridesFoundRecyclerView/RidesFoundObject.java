@@ -6,13 +6,17 @@ public class RidesFoundObject {
     private String rideDeparture;
     private String rideDestination;
     private String rideDateTime;
+    private String rideOwnerId;
+    private String userId;
 
-    public RidesFoundObject(String rideId, String rideDeparture, String rideDestination, String rideDateTime) {
+    public RidesFoundObject(String rideId, String rideDeparture, String rideDestination, String rideDateTime, String rideOwnerId, String userId) {
 
         this.rideId = rideId;
         this.rideDeparture = rideDeparture;
         this.rideDestination = rideDestination;
         this.rideDateTime = rideDateTime;
+        this.rideOwnerId = rideOwnerId;
+        this.userId = userId;
     }
 
     public String getRideId() {
@@ -31,4 +35,13 @@ public class RidesFoundObject {
 
         return rideDateTime;
     }
+
+    public String getRideOwnerId() {
+        return rideOwnerId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
 }
