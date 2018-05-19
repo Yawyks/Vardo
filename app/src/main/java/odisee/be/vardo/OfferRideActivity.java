@@ -258,9 +258,4 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         finish();
     }
-
-    private Long getCurrentTimestamp() {
-        Long timestamp = System.currentTimeMillis() / 1000;
-        return timestamp;
-    }
 }

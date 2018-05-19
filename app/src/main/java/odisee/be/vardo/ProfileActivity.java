@@ -273,22 +273,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
         myUserDatabase.updateChildren(myMapUserInformation);
 
-        /*
-
-        // Email update
-        FirebaseUser myUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        myUser.updateEmail(myUserProfileEmail)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ProfileActivity.this, "Email updated successfully", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-        */
-
         if (myUriAvatarResult != null) {
 
             StorageReference filePath = FirebaseStorage.getInstance().getReference().child("profile_avatars").child(myUserId);
