@@ -62,7 +62,6 @@ public class FindRideActivity extends AppCompatActivity implements NavigationVie
         myRecycleViewRidesFound.setAdapter(myRecycleViewAdapterRidesFound);
 
         getRideIds();
-
     }
 
     // Functions

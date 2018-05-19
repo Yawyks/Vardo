@@ -11,15 +11,30 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import odisee.be.vardo.Model.MyResponse;
+import odisee.be.vardo.Model.Notification;
+import odisee.be.vardo.Model.Sender;
+import odisee.be.vardo.Remote.APIService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    // Notification
+    APIService mService;
+    // App - Buttons
+    private EditText myEditTextTitle;
+    private EditText myEditTextBody;
+    private Button myButtonSendNotification;
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
-
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
     private ActionBarDrawerToggle myActionBarDrawerToggle;
@@ -30,8 +45,74 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         // Notification
+        // Token
+        /*
         Common.currentToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("My token", Common.currentToken);
+        */
+
+        // Topic
+        mService = Common.getFCMClient();
+        FirebaseMessaging.getInstance().subscribeToTopic("RidesOffered");
+
+        myEditTextTitle = findViewById(R.id.editTextTitle);
+        myEditTextBody = findViewById(R.id.editTextBody);
+        myButtonSendNotification = findViewById(R.id.buttonSendNotification);
+
+        // Token
+
+        myButtonSendNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Token
+                /*
+                Notification notification = new Notification(myEditTextTitle.getText().toString(), myEditTextBody.getText().toString());
+                Sender sender = new Sender(Common.currentToken,notification);
+                mService.sendNotification(sender)
+                        .enqueue(new Callback<MyResponse>() {
+                            @Override
+                            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+
+                                if(response.body().success == 1){
+                                    Toast.makeText(HomeActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(HomeActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<MyResponse> call, Throwable t) {
+                                Log.e("ERROR", t.getMessage());
+                            }
+                        });
+                */
+
+                // Topic
+                Notification notification = new Notification(myEditTextTitle.getText().toString(), myEditTextBody.getText().toString());
+                Sender sender = new Sender("/topics/RidesOffered", notification);
+
+                mService.sendNotification(sender)
+                        .enqueue(new Callback<MyResponse>() {
+                            @Override
+                            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+
+                                if (response.body().success == 1) {
+                                    Toast.makeText(HomeActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(HomeActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<MyResponse> call, Throwable t) {
+                                Log.e("ERROR", t.getMessage());
+                            }
+                        });
+            }
+        });
 
         // Buttons
         myButtonFindRide = findViewById(R.id.buttonFindRide);
