@@ -7,34 +7,23 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.messaging.FirebaseMessaging;
 
-import odisee.be.vardo.Model.MyResponse;
-import odisee.be.vardo.Model.Notification;
-import odisee.be.vardo.Model.Sender;
 import odisee.be.vardo.Remote.APIService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Notification
     APIService mService;
+
     // App - Buttons
-    private EditText myEditTextTitle;
-    private EditText myEditTextBody;
-    private Button myButtonSendNotification;
     private Button myButtonFindRide;
     private Button myButtonOfferRide;
+
     // Navigation Drawer
     private DrawerLayout myDrawerLayout;
     private ActionBarDrawerToggle myActionBarDrawerToggle;
@@ -45,19 +34,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         // Notification
-        // Token
         /*
         Common.currentToken = FirebaseInstanceId.getInstance().getToken();
         Log.d("My token", Common.currentToken);
         */
 
+        /*
         // Topic
         mService = Common.getFCMClient();
-        FirebaseMessaging.getInstance().subscribeToTopic("RidesOffered");
-
-        myEditTextTitle = findViewById(R.id.editTextTitle);
-        myEditTextBody = findViewById(R.id.editTextBody);
-        myButtonSendNotification = findViewById(R.id.buttonSendNotification);
 
         // Token
 
@@ -66,7 +50,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
 
                 // Token
-                /*
                 Notification notification = new Notification(myEditTextTitle.getText().toString(), myEditTextBody.getText().toString());
                 Sender sender = new Sender(Common.currentToken,notification);
                 mService.sendNotification(sender)
@@ -87,10 +70,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 Log.e("ERROR", t.getMessage());
                             }
                         });
-                */
+
 
                 // Topic
-                Notification notification = new Notification(myEditTextTitle.getText().toString(), myEditTextBody.getText().toString());
+                Notification notification = new Notification("Title", "Text");
                 Sender sender = new Sender("/topics/RidesOffered", notification);
 
                 mService.sendNotification(sender)
@@ -102,7 +85,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                     Toast.makeText(HomeActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(HomeActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-
                                 }
                             }
 
@@ -112,7 +94,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
             }
-        });
+        });*/
 
         // Buttons
         myButtonFindRide = findViewById(R.id.buttonFindRide);

@@ -78,41 +78,6 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonFindRide"
             app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
-            android:id="@+id/editTextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:ems="10"
-            android:hint="Title"
-            android:inputType="textPersonName"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/editTextBody"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/editTextBody"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:ems="10"
-            android:hint="Body"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/buttonSendNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView

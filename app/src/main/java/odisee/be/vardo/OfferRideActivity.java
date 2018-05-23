@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -257,7 +257,7 @@ public class OfferRideActivity extends AppCompatActivity implements NavigationVi
 
         myHistoryDatabase.child(myRidesOfferedId).updateChildren(myHashMap);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("RidesOffered");
+        Common.currentToken = FirebaseInstanceId.getInstance().getToken();
 
         finish();
     }

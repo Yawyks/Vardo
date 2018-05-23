@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.List;
 
+import odisee.be.vardo.Common;
 import odisee.be.vardo.HomeActivity;
+import odisee.be.vardo.Model.MyResponse;
+import odisee.be.vardo.Model.Notification;
+import odisee.be.vardo.Model.Sender;
 import odisee.be.vardo.R;
+import odisee.be.vardo.Remote.APIService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RidesFoundAdapter extends RecyclerView.Adapter<RidesFoundViewHolders> {
 
@@ -87,8 +96,11 @@ public class RidesFoundAdapter extends RecyclerView.Adapter<RidesFoundViewHolder
 
                         dialog.dismiss();
 
+                        sendNotification();
+
                         Intent i = new Intent(myContext, HomeActivity.class);
                         myContext.startActivity(i);
+
                         Toast.makeText(myContext, "You joined the ride successfully", Toast.LENGTH_SHORT).show();
 
                     }
@@ -112,5 +124,32 @@ public class RidesFoundAdapter extends RecyclerView.Adapter<RidesFoundViewHolder
     @Override
     public int getItemCount() {
         return this.myItemList.size();
+    }
+
+    public void sendNotification() {
+
+        APIService mService;
+
+        mService = Common.getFCMClient();
+
+        Notification notification = new Notification("Title", "Text");
+
+        Sender sender = new Sender(Common.currentToken, notification);
+
+        mService.sendNotification(sender)
+                .enqueue(new Callback<MyResponse>() {
+                    @Override
+                    public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+
+                        if (response.body().success == 1) {
+                        } else {
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MyResponse> call, Throwable t) {
+                        Log.e("ERROR", t.getMessage());
+                    }
+                });
     }
 }

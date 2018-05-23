@@ -7,7 +7,7 @@ public class RetrofitClient {
 
     private static Retrofit retrofit = null;
 
-    public static Retrofit getCLient(String baseURL) {
+    public static Retrofit getClient(String baseURL) {
 
         if (retrofit == null) {
 
