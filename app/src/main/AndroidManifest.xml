@@ -26,7 +26,7 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"
@@ -57,17 +57,12 @@
             android:label="Rides Offered"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RidesBookedActivity"
-            android:label="Ride Booked"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".CampussesActivity"
             android:label="@string/title_activity_campusses" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
@@ -82,5 +77,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".RidesBookedActivity"></activity>
     </application>
+
 </manifest>

@@ -42,6 +42,7 @@ public class RidesFoundAdapter extends RecyclerView.Adapter<RidesFoundViewHolder
 
     @Override
     public RidesFoundViewHolders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View myLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rides_found, null, false);
         RecyclerView.LayoutParams myLayoutParams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         myLayoutView.setLayoutParams(myLayoutParams);
