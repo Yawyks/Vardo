@@ -18,19 +18,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // App - Edit Texts
     private EditText myEditTextLoginEmail;
     private EditText myEditTextLoginPassword;
-
-    // App - Text Views
 
     private TextView myTextViewForgotPassword;
     private TextView myTextViewRegister;
 
-    // App - Buttons
     private Button myButtonLogin;
 
-    // Firebase
     private FirebaseAuth myFirebaseAuth;
     private FirebaseAuth.AuthStateListener myFireBaseAuthStateListener;
 
@@ -39,23 +34,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Edit Texts
         myEditTextLoginEmail = findViewById(R.id.editTextLoginEmail);
         myEditTextLoginPassword = findViewById(R.id.editTextLoginPassword);
 
-        // Text Views
         myTextViewRegister = findViewById(R.id.textViewRegister);
         myTextViewForgotPassword = findViewById(R.id.textViewForgotPassword);
 
-        // Buttons
         myButtonLogin = findViewById(R.id.buttonLogin);
 
         myFirebaseAuth = FirebaseAuth.getInstance();
 
-        // Listeners
         myTextViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(v.getContext(), RegisterActivity.class);
                 startActivity(i);
                 return;
@@ -65,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         myTextViewForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(v.getContext(), ForgotPasswordActivity.class);
                 startActivity(i);
                 return;
@@ -72,9 +65,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         myFireBaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 FirebaseUser myFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
                 if (myFirebaseUser != null) {
@@ -120,12 +113,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         myFirebaseAuth.addAuthStateListener(myFireBaseAuthStateListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
         myFirebaseAuth.removeAuthStateListener(myFireBaseAuthStateListener);
     }
 }
